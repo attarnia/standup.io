@@ -3,21 +3,25 @@ import { Zap, TrendingUp, Users, Workflow } from "lucide-react";
 
 const features = [
   {
+    id: 1,
     icon: <Zap size={22} />,
     head: "Increased Efficiency",
     caption: "Streamline processes to save time and resources.",
   },
   {
+    id: 4,
     icon: <TrendingUp size={22} />,
     head: "Real-Time Insights",
     caption: "Access live data to make informed decisions.",
   },
   {
+    id: 2,
     icon: <Users size={22} />,
     head: "Enhanced Collaboration",
     caption: "Improve teamwork with better communication.",
   },
   {
+    id: 3,
     icon: <Workflow size={22} />,
     head: "Custom Workflows",
     caption: "Tailor workflows to fit your team's unique needs.",
@@ -34,9 +38,9 @@ function Features() {
       <div className="grid gap-6 md:grid-cols-2">
         {features.map((feature) => (
           <Card
-            key={feature.head}
+            key={feature.id}
             icon={feature.icon}
-            head={feature.head}
+            title={feature.head}
             caption={feature.caption}
           />
         ))}
