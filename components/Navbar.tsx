@@ -15,6 +15,7 @@ export default function Navbar() {
                     aria-label="Standup Home"
                 >
                     Standup
+                    
                 </Link>
 
                 <nav className="hidden md:flex" aria-label="Main Navigation">
