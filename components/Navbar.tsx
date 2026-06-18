@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Navbar() {
     return (
         <header className="fixed top-0 left-0 m-auto mt-5 right-0 z-50 bg-[#303030] backdrop-blur-md rounded-[29px] w-[40%] px-4 sm:px-6 lg:px-4 p-3">
-            <div className="max-w-7xl mx-auto grid grid-cols-3 items-center">
+            <div className=" grid grid-cols-3 items-center">
                 <div className="flex justify-start">
                     <Link
                         href="/"
