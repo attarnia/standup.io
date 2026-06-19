@@ -31,10 +31,14 @@ const features = [
 function Features() {
   return (
     <section className=" py-24">
-      <h2 className="h2 mb-12 text-center">
-        Unleash the full power of your Team
-      </h2>
-
+      <div className="text-center">
+        <span className="mb-4 inline-block rounded-full border border-zinc-800 px-4 py-1 text-sm text-(--zinc-400)">
+          Features
+        </span>
+        <h2 className="h2 mb-12 text-center">
+          Unleash the full power of your Team
+        </h2>
+      </div>
       <div className="grid gap-6 md:grid-cols-2">
         {features.map((feature) => (
           <Card
