@@ -13,7 +13,7 @@ function LandingLayout({
           <Navbar />
         </Container>
       </div>
-      <section>{children}</section>
+      <main>{children}</main>
     </>
   );
 }
