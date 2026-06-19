@@ -117,13 +117,13 @@ export default function Navbar() {
                         <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
                         <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
                     </feComponentTransfer>
-                    <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+                    <feGaussianBlur in="turbulence" stdDeviation="1" result="softMap" />
                     <feSpecularLighting
                         in="softMap"
                         surfaceScale="5"
                         specularConstant="1"
                         specularExponent="100"
-                        lighting-color="white"
+                        lightingColor="white"
                         result="specLight"
                     >
                         <fePointLight x="-200" y="-200" z="300" />
