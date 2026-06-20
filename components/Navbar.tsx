@@ -14,14 +14,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="wrapper fixed z-50 top-4 left-0 right-0 mx-auto px-4 w-full max-w-3xl">
+    <nav className="wrapper fixed z-50 top-4 left-0 right-0 mx-auto px-4 w-full max-w-3xl"  aria-label="Main Navigation">
       <div className="liquidGlass-wrapper dock w-full">
         <div className="liquidGlass-effect"></div>
         <div className="liquidGlass-tint"></div>
         <div className="liquidGlass-shine"></div>
 
         <div className="liquidGlass-text w-full">
-          <header className="nav-header w-full px-4 py-2">
+          <div className="w-full px-4 py-2">
             <div className="flex items-center justify-between w-full">
               <Link
                 href="/"
@@ -31,7 +31,7 @@ export default function Navbar() {
                 Standup
               </Link>
 
-              <nav className="hidden md:flex" aria-label="Main Navigation">
+              <div className="hidden md:flex">
                 <ul className="flex items-center gap-6 lg:gap-8 font-semibold text-sm">
                   {LINKS.map((link) => (
                     <li key={link.href}>
@@ -44,7 +44,7 @@ export default function Navbar() {
                     </li>
                   ))}
                 </ul>
-              </nav>
+              </div>
 
               <div className="flex items-center gap-4">
                 <Link
@@ -67,9 +67,8 @@ export default function Navbar() {
             </div>
 
             {open && (
-              <nav
+              <div
                 className="md:hidden mt-3 pt-3 border-t border-black/5 dark:border-white/10"
-                aria-label="Mobile Navigation"
               >
                 <ul className="flex flex-col gap-2 font-medium text-base pb-2">
                   {LINKS.map((link) => (
@@ -93,9 +92,9 @@ export default function Navbar() {
                     </Link>
                   </li>
                 </ul>
-              </nav>
+              </div>
             )}
-          </header>
+          </div>
         </div>
       </div>
 
@@ -149,6 +148,6 @@ export default function Navbar() {
           />
         </filter>
       </svg>
-    </div>
+    </nav>
   );
 }

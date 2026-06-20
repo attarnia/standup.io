@@ -8,11 +8,11 @@ function LandingLayout({
 }>) {
   return (
     <>
-      <div>
+      <header>
         <Container>
           <Navbar />
         </Container>
-      </div>
+      </header>
       <main>{children}</main>
     </>
   );
