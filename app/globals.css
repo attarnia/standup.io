@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #e10101;
   --foreground: #181818;
+  --background-secondary: #010101;
 
-  --zinc-100: #ededed;
-  --zinc-400: #888888;
+  --neutral: #ededed;
+  --muted: #888888;
 }
 
 @theme inline {
@@ -31,13 +32,13 @@ body {
 
 @layer base {
   .h1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-(--zinc-100);
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-(--neutral);
   }
   .h2 {
-    @apply text-(--zinc-400) text-xl sm:text-2xl;
+    @apply text-(--muted) text-xl sm:text-2xl;
   }
   .h3 {
-    @apply text-(--zinc-400) text-lg sm:text-xl;
+    @apply text-(--muted) text-lg sm:text-xl;
   }
   .caption {
     @apply text-base sm:text-lg;
@@ -58,7 +59,7 @@ body {
     @apply w-full mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10;
   }
   .hero-desc {
-    @apply text-center mx-auto mt-2 text-(--zinc-400) text-base sm:text-lg max-w-2xl;
+    @apply text-center mx-auto mt-2 text-(--muted) text-base sm:text-lg max-w-2xl;
   }
   .hero-actions {
     @apply flex flex-col sm:flex-row items-center justify-center gap-4 mt-8;
@@ -70,10 +71,10 @@ body {
     @apply fixed top-5 inset-x-0 z-50 mx-auto w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] xl:w-[40%] max-w-3xl bg-[#303030] backdrop-blur-md rounded-[29px] px-4 sm:px-6 py-3;
   } */
   .nav-link {
-    @apply text-(--zinc-100) py-2;
+    @apply text-(--neutral) py-2;
   }
   .nav-btn {
-    @apply items-center justify-center px-5 py-3 font-semibold text-(--zinc-100) bg-black/60 rounded-full whitespace-nowrap;
+    @apply items-center justify-center px-5 py-3 font-semibold text-(--neutral) bg-black/60 rounded-full whitespace-nowrap;
   }
 }
 

@@ -24,7 +24,7 @@ export default function HowItWorks() {
     <section className="py-24">
       <div >
         <div className="mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full border border-zinc-800 px-4 py-1 text-sm text-(--zinc-400)">
+          <span className="mb-4 inline-block rounded-full border border-zinc-800 px-4 py-1 text-sm text-(--muted)">
             How It Works
           </span>
 
@@ -32,7 +32,7 @@ export default function HowItWorks() {
             Get started in three simple steps
           </h2>
 
-          <p className=" text-(--zinc-400)">
+          <p className=" text-(--muted)">
             Everything you need to manage your workflow, collaborate with your
             team, and scale faster.
           </p>
