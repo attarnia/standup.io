@@ -7,6 +7,7 @@ import {
     ChevronDown,
     FolderKanban,
 } from "lucide-react";
+import Badge from "@/components/ui/Badge";
 
 export default function SidebarProjects() {
 
@@ -47,7 +48,9 @@ export default function SidebarProjects() {
                                 Frontend 👑
                             </span>
 
-                            <span>5</span>
+                            <Badge variant="success">
+                                5
+                            </Badge>
                         </Link>
                     </li>
 
@@ -57,10 +60,12 @@ export default function SidebarProjects() {
                             className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:bg-(--muted)/50"
                         >
                             <span>
-                                Backend 
+                                Backend
                             </span>
 
-                            <span>3</span>
+                            <Badge variant="success">
+                                5
+                            </Badge>
                         </Link>
                     </li>
 
