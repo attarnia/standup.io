@@ -33,7 +33,7 @@ const page = () => {
           iconClass="text-green-600"
         />
       </section>
-      <section className="mt-8 grid gap-6 lg:grid-cols-[2fr_1fr]">
+      <section className="mt-8 grid grid-cols-2 items-start gap-6">
         <TodayReports />
 
         <QuickActions />
