@@ -15,11 +15,11 @@ export default function SidebarItem({
     return (
         <Link
             href={href}
-            className="flex items-center gap-3 rounded-xl transition-colors p-3 hover:bg-(--muted)/50"
+            className="flex items-center gap-3 rounded-xl transition-colors p-3 hover:bg-muted/50"
         >
             <Icon
                 aria-hidden
-                size={20}
+                size={17}
             />
 
             <span>{children}</span>

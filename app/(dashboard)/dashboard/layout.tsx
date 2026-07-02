@@ -1,5 +1,4 @@
 import Sidebar from "@/features/dashboard/components/sidebar/Sidebar";
-import '../../globals.css'
 
 export default function DashboardLayout({
     children,
@@ -7,7 +6,7 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex min-h-screen bg-background">
+        <div className="flex min-h-screen bg-secondary">
             <Sidebar />
 
             <main className="flex-1 overflow-y-auto p-8">

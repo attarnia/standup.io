@@ -36,7 +36,7 @@ export default function ReportCard({
                             className="rounded-full object-cover"
                         />
                     ) : (
-                        <div className="flex h-11 w-11 items-center justify-center rounded-full font-semibold bg-(--muted)">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full font-semibold bg-muted/60 text-zinc-400">
                             {name.charAt(0).toUpperCase()}
                         </div>
                     )}

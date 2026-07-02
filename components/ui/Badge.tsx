@@ -9,9 +9,9 @@ export default function Badge({
 }: BadgeProps) {
     const variants = {
         default: "bg-neutral text-foreground",
-        success: "bg-emerald-500/10 text-emerald-400",
-        warning: "bg-amber-500/10 text-amber-400",
-        primary: "bg-sky-500/10 text-sky-400",
+        success: "bg-emerald-700/10 text-emerald-500",
+        warning: "bg-amber-700/10 text-amber-500",
+        primary: "bg-sky-700/10 text-sky-500",
     };
 
     return (
