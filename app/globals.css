@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #e10101;
   --foreground: #181818;
   --background-secondary: #151313;
 
   --neutral: #ededed;
   --muted: #888888;
+  --primary: #d4d4d8;
+  --primary-hover: #e4e4e7;
+  --primary-foreground: #181818;
 }
 
 @theme inline {
   --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--background-secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -102,7 +107,23 @@ body {
 
   /* side bar styles */
   .side-bar {
-    @apply sticky top-4 ml-4 flex h-[calc(100vh-2rem)] w-72 flex-col rounded-2xl border border-muted/50  shadow-xl;
+    @apply sticky top-4 ml-4 flex h-[calc(100vh-2rem)] w-72 flex-col rounded-2xl border border-muted/50 shadow-xl;
+  }
+
+  .btn {
+    @apply rounded-lg bg-primary px-2 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90;
+  }
+
+  .btn-success {
+    @apply bg-green-600 font-medium text-white transition-colors hover:bg-green-700;
+  }
+
+  .btn-error {
+    @apply bg-red-600 font-medium text-white transition-colors hover:bg-red-700;
+  }
+
+  .btn-outline {
+    @apply border bg-transparent font-medium text-foreground transition-colors;
   }
 }
 
