@@ -24,7 +24,7 @@ export default function ReportCard({
 
 
     return (
-        <article className="p-5 bg-surface border-y border-dashed border-muted/30">
+        <article className="p-5 bg-surface border-b border-dashed border-muted/30 first:border-t first:border-dashed">
             <header className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     {avatar ? (

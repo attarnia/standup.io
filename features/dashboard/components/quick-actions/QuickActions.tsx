@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus, FolderPlus, Users, Settings } from "lucide-react";
+import { Plus, FolderPlus, Users2 } from "lucide-react";
 
 const actions = [
   {
@@ -18,13 +18,7 @@ const actions = [
     title: "Invite Members",
     description: "Add teammates",
     href: "/dashboard/members",
-    icon: Users,
-  },
-  {
-    title: "Settings",
-    description: "Workspace settings",
-    href: "/dashboard/settings",
-    icon: Settings,
+    icon: Users2,
   },
 ];
 
@@ -43,8 +37,8 @@ export default function QuickActions() {
             href={href}
             className="flex items-center gap-4 rounded-2xl bg-base/50 p-4 transition-colors hover:bg-muted/30"
           >
-            <div className="rounded-lg bg-primary/30 p-2">
-              <Icon className="h-5 w-5 text-primary" />
+            <div className="rounded-lg bg-muted/30 p-2">
+              <Icon className="h-5 w-5 text-muted" />
             </div>
 
             <div>

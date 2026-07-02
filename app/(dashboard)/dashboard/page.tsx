@@ -2,7 +2,7 @@ import SummaryCard from "@/components/ui/SummaryCard";
 import Hero from "@/features/dashboard/components/Hero";
 import QuickActions from "@/features/dashboard/components/quick-actions/QuickActions";
 import TodayReports from "@/features/dashboard/components/today-reports/TodayReports";
-import { ClipboardList, FolderKanban, Users } from "lucide-react";
+import { ClipboardList, Folder, Users2 } from "lucide-react";
 
 const page = () => {
   return (
@@ -10,10 +10,10 @@ const page = () => {
       <Hero />
       <section className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-10">
         <SummaryCard
-          title="Total Projects"
+          title="Total Workspaces"
           value={4}
           description="2 owned • 2 member"
-          icon={FolderKanban}
+          icon={Folder}
         />
 
         <SummaryCard
@@ -28,7 +28,7 @@ const page = () => {
           title="Total Team Members"
           value="12"
           description="Submitted today"
-          icon={Users}
+          icon={Users2}
           iconBgClass="bg-green-700/30"
           iconClass="text-green-600"
         />

@@ -23,7 +23,7 @@ export default function SummaryCard({
           <div
             className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${iconBgClass}`}
           >
-            <Icon aria-hidden="true" className={`h-7 w-7 ${iconClass}`} />
+            <Icon aria-hidden="true" className={`h-6.5 w-6.5 ${iconClass}`} />
           </div>
 
           <div className="space-y-2">
@@ -34,7 +34,7 @@ export default function SummaryCard({
             </h2>
 
             {description && (
-              <p className="text-sm text-muted">{description}</p>
+              <p className="font-medium text-sm text-muted">{description}</p>
             )}
           </div>
         </div>
