@@ -8,7 +8,7 @@ export default function Badge({
     variant = "default",
 }: BadgeProps) {
     const variants = {
-        default: "bg-neutral text-foreground",
+        default: "bg-neutral-800 text-foreground",
         success: "bg-emerald-800/30 text-emerald-500",
         warning: "bg-amber-800/30 text-amber-500",
         primary: "bg-sky-800/30 text-sky-500",

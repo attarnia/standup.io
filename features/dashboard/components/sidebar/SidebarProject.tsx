@@ -48,7 +48,7 @@ export default function SidebarProjects() {
                                 Frontend 👑
                             </span>
 
-                            <Badge variant="success">
+                            <Badge>
                                 5
                             </Badge>
                         </Link>
@@ -63,7 +63,7 @@ export default function SidebarProjects() {
                                 Backend
                             </span>
 
-                            <Badge variant="success">
+                            <Badge>
                                 5
                             </Badge>
                         </Link>
