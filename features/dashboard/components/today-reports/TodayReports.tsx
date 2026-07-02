@@ -5,7 +5,7 @@ export default function TodayReports() {
     return (
       <section
         aria-labelledby="today-reports-heading"
-        className="mt-10 border p-6 rounded-3xl border-zinc-800"
+        className="mt-10 bg-surface p-6 rounded-3xl"
       >
         <header className="mb-6 flex items-center justify-between">
           <div>
@@ -29,7 +29,7 @@ export default function TodayReports() {
           </Link>
         </header>
 
-        <div className="space-y-4">
+        <div>
           <ReportCard
             name="Ali"
             submittedAt="09:15 AM"

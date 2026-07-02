@@ -6,7 +6,7 @@ export default function Hero() {
             <section>
           
 
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-2 text-text">
                     Hi, Ali 👋 Welcome back.
                 </p>
             </section>

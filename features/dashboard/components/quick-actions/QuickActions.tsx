@@ -30,9 +30,9 @@ const actions = [
 
 export default function QuickActions() {
   return (
-    <div className="rounded-3xl border border-zinc-800 p-6">
+    <div className="rounded-3xl bg-surface p-6">
       <h2 className="text-lg font-semibold">Quick Actions</h2>
-      <p className="mt-1 text-sm">
+      <p className="mt-1 text-sm text-muted">
         Frequently used actions.
       </p>
 
@@ -41,15 +41,15 @@ export default function QuickActions() {
           <Link
             key={title}
             href={href}
-            className="flex items-center gap-4 rounded-lg border-zinc-800 border  p-4 transition-colors hover:bg-muted/30"
+            className="flex items-center gap-4 rounded-2xl bg-base/50 p-4 transition-colors hover:bg-muted/30"
           >
-            <div className="rounded-lg bg-primary/10 p-2">
+            <div className="rounded-lg bg-primary/30 p-2">
               <Icon className="h-5 w-5 text-primary" />
             </div>
 
             <div>
               <p className="font-medium">{title}</p>
-              <p className="text-sm">{description}</p>
+              <p className="text-sm text-muted">{description}</p>
             </div>
           </Link>
         ))}

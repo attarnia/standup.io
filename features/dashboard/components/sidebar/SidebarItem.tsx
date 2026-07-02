@@ -20,10 +20,9 @@ export default function SidebarItem({
             <Icon
                 aria-hidden
                 size={17}
-                className="text-muted"
             />
 
-            <span className="text-muted font-medium">{children}</span>
+            <span className="text-text font-medium">{children}</span>
         </Link>
     );
 }
