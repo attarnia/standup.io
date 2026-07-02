@@ -18,7 +18,7 @@ export default function SummaryCard({
     iconClass = "text-violet-600",
 }: SummaryCardProps) {
     return (
-      <article className="rounded-3xl border border-zinc-800 p-6 shadow-sm transition-all duration-200 shadow-muted/20">
+      <article className="rounded-3xl border border-zinc-800 p-6 transition-all duration-200">
         <div className="flex items-start gap-6">
           <div
             className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${iconBgClass}`}

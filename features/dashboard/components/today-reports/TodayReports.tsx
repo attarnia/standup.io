@@ -5,7 +5,7 @@ export default function TodayReports() {
     return (
       <section
         aria-labelledby="today-reports-heading"
-        className="mt-10 border p-6 rounded-3xl border-zinc-800 shadow-muted/20 shadow-sm"
+        className="mt-10 border p-6 rounded-3xl border-zinc-800"
       >
         <header className="mb-6 flex items-center justify-between">
           <div>
