@@ -18,7 +18,7 @@ export default function SummaryCard({
     iconClass = "text-violet-600",
 }: SummaryCardProps) {
     return (
-      <article className="rounded-3xl border border-zinc-800 p-6 transition-all duration-200">
+      <article className="rounded-3xl border-2 border-muted/30 p-6 transition-all duration-200">
         <div className="flex items-start gap-6">
           <div
             className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${iconBgClass}`}
@@ -27,14 +27,14 @@ export default function SummaryCard({
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-medium text-gray-300">{title}</p>
+            <p className="text-sm font-medium text-muted">{title}</p>
 
-            <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-text md:text-4xl">
               {value}
             </h2>
 
             {description && (
-              <p className="text-sm text-gray-400">{description}</p>
+              <p className="text-sm text-muted">{description}</p>
             )}
           </div>
         </div>

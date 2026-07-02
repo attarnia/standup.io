@@ -23,7 +23,7 @@ export default function ReportFilters() {
                 <input
                     type="search"
                     placeholder="Search reports..."
-                    className="w-full rounded-xl bg-background-secondary py-3 pr-4 pl-11 text-sm text-foreground outline-none placeholder:text-muted focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-xl bg-base py-3 pr-4 pl-11 text-sm text-text outline-none placeholder:text-muted focus:ring-2 focus:ring-blue-500"
                 />
             </div>
 
@@ -41,14 +41,14 @@ export default function ReportFilters() {
 
                 <button
                     type="button"
-                    className="rounded-xl bg-background-secondary px-4 py-2 text-sm text-muted transition hover:text-foreground"
+                    className="rounded-xl bg-base px-4 py-2 text-sm text-muted transition hover:text-text"
                 >
                     This Week
                 </button>
 
                 <button
                     type="button"
-                    className="rounded-xl bg-background-secondary px-4 py-2 text-sm text-muted transition hover:text-foreground"
+                    className="rounded-xl bg-base px-4 py-2 text-sm text-muted transition hover:text-text"
                 >
                     All
                 </button>

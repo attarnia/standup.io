@@ -1,45 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --foreground: #181818;
-  --background-secondary: #151313;
+  --base: #000000;
+  --surface: #141414;
 
+  --text: #fff;
   --neutral: #ededed;
   --muted: #888888;
+  --border: #1f1f1f;
+
   --primary: #d4d4d8;
   --primary-hover: #e4e4e7;
   --primary-foreground: #181818;
 }
 
 @theme inline {
+  --color-base: var(--base);
+  --color-surface: var(--surface);
+
+  --color-text: var(--text);
+  --color-neutral: var(--neutral);
   --color-muted: var(--muted);
+  --color-border: var(--border);
+
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--background-secondary);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --text-color: #ffffff;
   }
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
 }
 
 @layer base {
   .h1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-(--neutral);
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-text;
   }
 
   .h2 {
@@ -88,16 +96,12 @@ body {
     @apply fixed top-5 inset-x-0 z-50 mx-auto w-[92%] sm:w-[85%] md:w-[75%] lg:w-[60%] xl:w-[40%] max-w-3xl bg-[#303030] backdrop-blur-md rounded-[29px] px-4 sm:px-6 py-3;
   } */
   .nav-link {
-    @apply text-(--neutral) py-2;
+    @apply text-text py-2;
   }
 
   .nav-btn {
     @apply items-center justify-center px-5 py-3 font-semibold text-(--neutral) bg-black/60 rounded-full whitespace-nowrap;
   }
-
-
-
-
 }
 
 @layer components {
@@ -105,10 +109,9 @@ body {
     @apply rounded-3xl border border-zinc-800 bg-zinc-950 py-6 px-4 transition-all hover:border-zinc-700 hover:bg-zinc-900;
   }
 
-  /* side bar styles */
   .side-bar {
-    @apply sticky top-4 ml-4 flex h-[calc(100vh-2rem)] w-72 flex-col rounded-2xl border border-muted/50 shadow-xl;
-  }
+  @apply sticky top-4 flex h-[calc(100vh-2rem)] w-72 flex-col rounded-2xl bg-surface ml-4 px-3;
+}
 
   .btn {
     @apply rounded-lg bg-primary px-2 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90;
@@ -123,7 +126,7 @@ body {
   }
 
   .btn-outline {
-    @apply border bg-transparent font-medium text-foreground transition-colors;
+    @apply border bg-transparent font-medium text-text transition-colors;
   }
 }
 
@@ -191,6 +194,6 @@ body {
 }
 
 .dock,
-.dock>div {
+.dock > div {
   border-radius: 2rem;
 }

@@ -32,7 +32,7 @@ export default function QuickActions() {
   return (
     <div className="rounded-3xl border border-zinc-800 p-6">
       <h2 className="text-lg font-semibold">Quick Actions</h2>
-      <p className="mt-1 text-sm text-muted-foreground">
+      <p className="mt-1 text-sm">
         Frequently used actions.
       </p>
 
@@ -49,7 +49,7 @@ export default function QuickActions() {
 
             <div>
               <p className="font-medium">{title}</p>
-              <p className="text-sm text-muted-foreground">{description}</p>
+              <p className="text-sm">{description}</p>
             </div>
           </Link>
         ))}

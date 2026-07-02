@@ -11,7 +11,7 @@ export default function TodayReports() {
           <div>
             <h2
               id="today-reports-heading"
-              className="text-xl font-semibold text-foreground"
+              className="text-xl font-semibold text-text"
             >
               {"Today's"} Standup Reports
             </h2>
@@ -22,8 +22,8 @@ export default function TodayReports() {
           </div>
 
           <Link
-            href="/reports"
-            className="text-sm font-medium text-foreground hover:underline"
+            href="/dashboard/reports"
+            className="text-sm font-medium text-text hover:underline"
           >
             View all
           </Link>

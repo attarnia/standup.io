@@ -24,7 +24,7 @@ export default function UserProfile({ name, avatar }: UserProfileProps) {
       </div>
 
       <div className="hidden text-left sm:block">
-        <p className="text-sm font-semibold text-foreground">{name}</p>
+        <p className="text-sm font-semibold text-text">{name}</p>
       </div>
     </button>
   );

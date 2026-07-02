@@ -24,7 +24,7 @@ export default function ReportCard({
 
 
     return (
-        <article className="rounded-2xl bg-background-secondary p-5 border border-zinc-800">
+        <article className="rounded-2xl bg-base p-5 border border-zinc-800">
             <header className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     {avatar ? (

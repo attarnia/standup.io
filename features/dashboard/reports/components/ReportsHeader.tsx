@@ -1,7 +1,7 @@
 export default function ReportsHeader() {
     return (
         <header className="mb-10">
-            <h1 className="text-4xl font-bold text-foreground">
+            <h1 className="text-4xl font-bold text-text">
                 Reports
             </h1>
 

@@ -2,14 +2,14 @@ import { ClipboardList } from "lucide-react";
 
 export default function EmptyReports() {
     return (
-        <section className="flex flex-col items-center justify-center rounded-2xl bg-background-secondary px-8 py-20 text-center">
+        <section className="flex flex-col items-center justify-center rounded-2xl bg-base px-8 py-20 text-center">
             <ClipboardList
                 aria-hidden
                 size={48}
                 className="text-muted"
             />
 
-            <h2 className="mt-5 text-xl font-semibold text-foreground">
+            <h2 className="mt-5 text-xl font-semibold text-text">
                 No reports yet
             </h2>
 
