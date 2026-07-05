@@ -48,7 +48,7 @@ export default function Navbar() {
 
               <div className="flex items-center gap-4">
                 <Link
-                  href="/signup"
+                  href="/auth"
                   className="hidden md:inline-flex bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
                 >
                   Get Started
