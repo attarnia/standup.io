@@ -2,9 +2,20 @@ import SummaryCard from "@/components/ui/SummaryCard";
 import Hero from "@/features/dashboard/components/Hero";
 import QuickActions from "@/features/dashboard/components/quick-actions/QuickActions";
 import TodayReports from "@/features/dashboard/components/today-reports/TodayReports";
+import { createSupabaseServerClient } from "@/lib/server-client";
 import { ClipboardList, Folder, Users2 } from "lucide-react";
+import { redirect } from "next/navigation";
 
-const page = () => {
+const page = async () => {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/auth");
+  }
+
   return (
     <>
       <Hero />
