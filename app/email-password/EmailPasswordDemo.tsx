@@ -4,12 +4,13 @@ import { User } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
 import { AuthDemoPage } from "@/components/ui/AuthDemoPage";
+import { useRouter } from "next/router";
 
 type EmailPasswordDemoProps = {
   user: User | null;
 };
 
-type Mode = "signup" | "signin"
+type Mode = "signup" | "signin";
 
 export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
   const [mode, setMode] = useState("signup");
@@ -18,7 +19,7 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
   const [status, setStatus] = useState("");
   const supabase = getSupabaseBrowserClient();
   const [currentUser, setCurrentUser] = useState<User | null>(user);
-
+  const router = useRouter();
   async function handleSignOut() {
     await supabase.auth.signOut();
     setCurrentUser(null);
@@ -29,13 +30,13 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setCurrentUser(session?.user ?? null);
-      }
+      },
     );
 
     return () => {
       listener?.subscription.unsubscribe();
     };
-  }, [supabase])
+  }, [supabase]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,7 +47,7 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
         password,
         options: {
           emailRedirectTo: `${window.location.origin}/welcome`,
-        }
+        },
       });
       if (error) {
         setStatus(error.message);
@@ -62,6 +63,7 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
         setStatus(error.message);
       } else {
         setStatus("Signed in successfully");
+        router.push("/dashboard");
       }
     }
   }
@@ -110,10 +112,11 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
                     type="button"
                     aria-pressed={mode === option}
                     onClick={() => setMode(option)}
-                    className={`rounded-full px-4 py-1 transition ${mode === option
-                      ? "bg-emerald-500/30 text-white shadow shadow-emerald-500/20"
-                      : "text-slate-400"
-                      }`}
+                    className={`rounded-full px-4 py-1 transition ${
+                      mode === option
+                        ? "bg-emerald-500/30 text-white shadow shadow-emerald-500/20"
+                        : "text-slate-400"
+                    }`}
                   >
                     {option === "signup" ? "Sign up" : "Sign in"}
                   </button>
@@ -152,7 +155,11 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
               {mode === "signup" ? "Create account" : "Sign in"}
             </button>
             {status && (
-              <p className="mt-4 text-sm text-slate-300" role="status" aria-live="polite">
+              <p
+                className="mt-4 text-sm text-slate-300"
+                role="status"
+                aria-live="polite"
+              >
                 {status}
               </p>
             )}
@@ -170,10 +177,11 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
             </p>
           </div>
           <span
-            className={`rounded-full px-3 py-1 text-xs font-semibold ${currentUser
-              ? "bg-emerald-500/20 text-emerald-200"
-              : "bg-white/10 text-slate-400"
-              }`}
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${
+              currentUser
+                ? "bg-emerald-500/20 text-emerald-200"
+                : "bg-white/10 text-slate-400"
+            }`}
           >
             {currentUser ? "Active" : "Idle"}
           </span>
