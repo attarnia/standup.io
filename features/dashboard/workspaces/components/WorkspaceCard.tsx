@@ -22,7 +22,7 @@ export default function WorkspaceCard({
                         {name}
                     </h2>
 
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted">
+                    <p className="my-2 line-clamp-2 text-sm leading-6 text-muted">
                         {description}
                     </p>
                 </div>
