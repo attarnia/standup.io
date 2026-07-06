@@ -1,11 +1,9 @@
 import Badge from "@/components/ui/Badge";
 import { Clock3, Users } from "lucide-react";
 import { Workspace } from "../types/types";
+import { WORKSPACE_ROLE_VARIANTS } from "../constants/constants";
 
-const ROLE_BADGE_VARIANTS = {
-    Owner: "primary",
-    Member: "success",
-} as const;
+
 
 export default function WorkspaceCard({
     name,
@@ -27,7 +25,7 @@ export default function WorkspaceCard({
                     </p>
                 </div>
 
-                <Badge variant={ROLE_BADGE_VARIANTS[role.label]}>
+                <Badge variant={WORKSPACE_ROLE_VARIANTS[role.label]}>
                     {role.label}
                 </Badge>
             </header>
