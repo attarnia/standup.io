@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 export default function WorkspaceHeader() {
   return (
@@ -16,12 +17,11 @@ export default function WorkspaceHeader() {
       </div>
 
       <Button className="w-fit flex items-center gap-2">
-        <Plus
-          size={18}
-          aria-hidden="true"
-        />
+        <Plus size={18} aria-hidden="true" />
 
-        <span className="font-medium">New Workspace</span>
+        <Link href="/dashboard/workspaces/new" className="font-medium">
+          New Workspace
+        </Link>
       </Button>
     </header>
   );

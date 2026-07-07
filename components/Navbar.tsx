@@ -12,7 +12,7 @@ const LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  
   return (
     <nav className="wrapper fixed z-50 top-4 left-0 right-0 mx-auto px-4 w-full max-w-3xl"  aria-label="Main Navigation">
       <div className="liquidGlass-wrapper dock w-full">
@@ -84,7 +84,7 @@ export default function Navbar() {
                   ))}
                   <li className="pt-2">
                     <Link
-                      href="/signup"
+                      href="/auth"
                       className="block text-center bg-black text-white dark:bg-white dark:text-black py-2 rounded-full text-sm"
                       onClick={() => setOpen(false)}
                     >

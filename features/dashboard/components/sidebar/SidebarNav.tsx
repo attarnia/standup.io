@@ -51,6 +51,16 @@ const sections: NavSection[] = [
       },
     ],
   },
+  {
+    title: "Reports",
+    items: [
+      {
+        label: "Reports",
+        href: "/dashboard/reports",
+        icon: Sparkles,
+      },
+    ],
+  },
 ];
 
 const bottomSection: NavSection = {
