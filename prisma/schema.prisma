@@ -13,7 +13,6 @@ datasource db {
 
 enum WorkspaceRole {
   OWNER
-  ADMIN
   MEMBER
 }
 
@@ -29,8 +28,10 @@ model User {
 }
 
 model Workspace {
-  id        String   @id @default(uuid())
-  name      String
+  id         String @id @default(uuid())
+  name       String
+  inviteCode String @unique @default(cuid())
+
   createdAt DateTime @default(now())
 
   members WorkspaceMember[]
