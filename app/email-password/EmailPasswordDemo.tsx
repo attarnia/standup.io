@@ -4,7 +4,7 @@ import { User } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
 import { AuthDemoPage } from "@/components/ui/AuthDemoPage";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 
 type EmailPasswordDemoProps = {
