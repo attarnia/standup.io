@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 // ---------- Create / Join ----------
 
-export async function createWorkspace(name: string) {
+export async function createWorkspace(name: string, description?: string) {
   const user = await requireUser();
 
   if (!name.trim()) {
@@ -16,6 +16,7 @@ export async function createWorkspace(name: string) {
   const workspace = await prisma.workspace.create({
     data: {
       name: name.trim(),
+      description: description?.trim() || null,
       members: {
         create: {
           userId: user.id,

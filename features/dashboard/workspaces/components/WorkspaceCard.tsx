@@ -2,10 +2,12 @@ import Badge from "@/components/ui/Badge";
 import { Clock3, Users } from "lucide-react";
 import { Workspace } from "../types/types";
 import { WORKSPACE_ROLE_VARIANTS } from "../constants/constants";
+import Link from "next/link";
 
 
 
 export default function WorkspaceCard({
+    id,
     name,
     description,
     members,
@@ -13,6 +15,7 @@ export default function WorkspaceCard({
     role,
 }: Workspace) {
     return (
+        <Link href={`/dashboard/workspaces/${id}/member`}>
         <article className="flex h-full flex-col rounded-3xl border border-border bg-surface p-6 transition-colors duration-200 hover:border-muted/40">
             <header className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
@@ -52,5 +55,6 @@ export default function WorkspaceCard({
                 </div>
             </footer>
         </article>
+        </Link>
     );
 }
