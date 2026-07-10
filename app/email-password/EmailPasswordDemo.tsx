@@ -5,6 +5,10 @@ import { useState, useEffect } from "react";
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
 import { AuthDemoPage } from "@/components/ui/AuthDemoPage";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
+=======
+import { redirect } from "next/navigation";
+>>>>>>> ef369d1245f6203fcbc2739af5b646f63c5bd2ea
 
 type EmailPasswordDemoProps = {
   user: User | null;
