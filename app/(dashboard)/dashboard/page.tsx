@@ -19,7 +19,7 @@ const page = async () => {
   return (
     <>
       <Hero />
-      <section className="grid grid-cols-1 gap-5 md:grid-cols-3 mt-10">
+      <section className="mt-8 grid grid-cols-1 gap-4 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
         <SummaryCard
           title="Total Workspaces"
           value={4}
@@ -35,6 +35,7 @@ const page = async () => {
           iconBgClass="bg-orange-700/30"
           iconClass="text-orange-600"
         />
+
         <SummaryCard
           title="Total Team Members"
           value="12"
@@ -44,10 +45,14 @@ const page = async () => {
           iconClass="text-green-600"
         />
       </section>
-      <section className="mt-8 grid grid-cols-2 items-start gap-6">
-        <TodayReports />
+      <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3 items-start">
+        <div className="lg:col-span-2">
+          <TodayReports />
+        </div>
 
-        <QuickActions />
+        <div className="lg:col-span-1">
+          <QuickActions />
+        </div>
       </section>
     </>
   );
