@@ -91,7 +91,6 @@ function MemberPage() {
         >
           {users.map((user) =>
             view === "grid" ? (
-              // ---------------- GRID CARD ----------------
               <UserCard
                 key={user.id}
                 initials={user.initials}
@@ -100,7 +99,6 @@ function MemberPage() {
                 role={user.role}
               />
             ) : (
-              // ---------------- LIST ITEM ----------------
               <ListUser
                 key={user.id}
                 initials={user.initials}

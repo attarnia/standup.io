@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createWorkspace } from "@/action/workspace";
+import Button from "@/components/ui/Button";
 
 export default function CreateWorkspaceForm() {
   const [name, setName] = useState("");
@@ -27,7 +28,6 @@ export default function CreateWorkspaceForm() {
 
   return (
     <div className="mx-auto w-full max-w-2xl rounded-3xl border border-border bg-surface p-8 shadow-sm">
-      {/* ...unchanged header markup... */}
 
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
@@ -78,20 +78,19 @@ export default function CreateWorkspaceForm() {
         {error && <p className="text-sm text-red-500">{error}</p>}
 
         <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
-          <button
+          <Button
             type="button"
             onClick={() => router.back()}
-            className="rounded-2xl border border-border bg-base px-6 py-3 font-medium text-text transition hover:bg-border/40"
+            outline
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             type="submit"
             disabled={submitting}
-            className="rounded-2xl bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-lg disabled:opacity-50"
           >
             {submitting ? "Creating..." : "Create Workspace"}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

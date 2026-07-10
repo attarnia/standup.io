@@ -26,7 +26,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
-  
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -110,11 +110,11 @@ body {
   }
 
   .side-bar {
-  @apply sticky top-4 flex h-[calc(100vh-2rem)] w-72 flex-col rounded-2xl bg-surface ml-4 px-3;
-}
+    @apply sticky top-4 flex h-[calc(100vh-2rem)] w-72 flex-col rounded-2xl bg-surface ml-4 px-3;
+  }
 
   .btn {
-    @apply rounded-lg bg-primary px-2 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90;
+    @apply rounded-lg bg-primary px-2 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary-hover;
   }
 
   .btn-success {
@@ -126,7 +126,7 @@ body {
   }
 
   .btn-outline {
-    @apply border bg-transparent font-medium text-text transition-colors;
+    @apply border  bg-transparent font-medium text-text transition-colors;
   }
 }
 
@@ -194,6 +194,6 @@ body {
 }
 
 .dock,
-.dock > div {
+.dock>div {
   border-radius: 2rem;
 }
