@@ -4,8 +4,7 @@ import { User } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
 import { AuthDemoPage } from "@/components/ui/AuthDemoPage";
-import { useRouter } from "next/router";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type EmailPasswordDemoProps = {
   user: User | null;
@@ -64,7 +63,7 @@ export default function EmailPasswordDemo({ user }: EmailPasswordDemoProps) {
         setStatus(error.message);
       } else {
         setStatus("Signed in successfully");
-        redirect("/dashboard");
+        router.push("/dashboard");
       }
     }
   }
