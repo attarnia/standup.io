@@ -15,7 +15,7 @@ export default async function JoinPage({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect(`/login?next=/join/${code}`);
+    redirect(`/auth?next=/join/${code}`);
   }
 
   let workspaceId: string | null = null;
@@ -25,6 +25,7 @@ export default async function JoinPage({
     const workspace = await joinWorkspace(code);
     workspaceId = workspace.id;
   } catch (err: any) {
+    console.error("JOIN ERROR:", err); 
     errorType =
       err?.message === "You're already a member of this workspace"
         ? "already_member"

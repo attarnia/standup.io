@@ -36,10 +36,7 @@ export default function WorkspaceMembers({
   const router = useRouter();
 
   const isOwner = currentUserRole === "OWNER";
-  const inviteLink =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/join/${workspace.inviteCode}`
-      : "";
+  const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/join/${workspace.inviteCode}`;
 
   async function handleCopyLink() {
     await navigator.clipboard.writeText(inviteLink);

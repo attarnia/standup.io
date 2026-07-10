@@ -12,6 +12,5 @@ export default async function EmailPasswordPage() {
     await syncUser(user);
   }
 
-  console.log({ user });
   return <GoogleLoginDemo user={user} />;
 }

@@ -29,7 +29,7 @@ export async function createSupabaseServerClient() {
             cookieStore.set(name, value, options),
           );
         } catch (error) {
-          console.log(error);
+          console.error("Error setting cookies:", error);
         }
       },
     },

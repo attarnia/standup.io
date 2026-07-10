@@ -1,5 +1,5 @@
-import { syncUser } from "@/action/syncUser";
 import { createSupabaseServerClient } from "@/lib/server-client";
+import { syncUser } from "@/action/syncUser";
 
 export async function requireUser() {
   const supabase = await createSupabaseServerClient();
@@ -11,6 +11,7 @@ export async function requireUser() {
     throw new Error("UNAUTHENTICATED");
   }
 
-  await syncUser(user);
-  return user;
+  const dbUser = await syncUser(user);
+
+  return { ...user, id: dbUser.id };
 }
