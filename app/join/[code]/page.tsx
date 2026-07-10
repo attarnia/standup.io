@@ -25,7 +25,6 @@ export default async function JoinPage({
     const workspace = await joinWorkspace(code);
     workspaceId = workspace.id;
   } catch (err: any) {
-    console.error("JOIN ERROR:", err); 
     errorType =
       err?.message === "You're already a member of this workspace"
         ? "already_member"
