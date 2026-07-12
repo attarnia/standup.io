@@ -2,21 +2,17 @@ import { prisma } from "@/lib/prisma";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 
 export async function syncUser(supabaseUser: SupabaseUser) {
-  if (!supabaseUser.email) {
-    throw new Error("Supabase user email missing");
-  }
-
   const email = supabaseUser.email;
 
-  const existingByEmail = await prisma.user.findUnique({ where: { email } });
-
-  if (existingByEmail && existingByEmail.id !== supabaseUser.id) {
-    return existingByEmail;
+  if (!email) {
+    throw new Error("Email missing");
   }
 
   return prisma.user.upsert({
-    where: { id: supabaseUser.id },
-    update: { email },
+    where: { email },
+    update: {
+      name: supabaseUser.user_metadata?.name ?? email.split("@")[0],
+    },
     create: {
       id: supabaseUser.id,
       email,

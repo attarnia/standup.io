@@ -1,4 +1,5 @@
 import { createSupabaseServerClient } from "./server-client";
+import { prisma } from "./prisma";
 
 export async function getCurrentUser() {
   const supabase = await createSupabaseServerClient();
@@ -7,9 +8,12 @@ export async function getCurrentUser() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    throw new Error("Unauthorized");
-  }
+  if (!user) return null;
 
-  return user;
+  // ← Supabase user داریم، حالا Prisma user رو پیدا می‌کنیم
+  const dbUser = await prisma.user.findUnique({
+    where: { email: user.email },
+  });
+
+  return dbUser;
 }

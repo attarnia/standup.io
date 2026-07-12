@@ -1,7 +1,6 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -66,6 +65,7 @@ model Report {
 
   title String
   description String?
+
 
   workspaceId String
   creatorId String

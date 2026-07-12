@@ -1,18 +1,15 @@
 "use client";
 
 
-import { useState } from "react";
-
-import { createReport }
-    from "../actions/create-report";
-
+import {
+    useState
+} from "react";
 
 
-interface Props {
-
-    workspaceId: string;
-
+import {
+    createReport
 }
+    from "../actions/create-report";
 
 
 
@@ -20,7 +17,11 @@ export default function CreateReportForm({
 
     workspaceId
 
-}: Props) {
+}: {
+
+    workspaceId: string
+
+}) {
 
 
     const [title, setTitle] = useState("");
@@ -29,7 +30,7 @@ export default function CreateReportForm({
 
 
 
-    async function handleSubmit(
+    async function submit(
         e: React.FormEvent
     ) {
 
@@ -38,11 +39,14 @@ export default function CreateReportForm({
 
 
         await createReport(
+
             workspaceId,
+
             {
                 title,
                 description
             }
+
         );
 
 
@@ -58,7 +62,7 @@ export default function CreateReportForm({
     return (
 
         <form
-            onSubmit={handleSubmit}
+            onSubmit={submit}
             className="space-y-4"
         >
 
@@ -85,21 +89,23 @@ export default function CreateReportForm({
                     e => setDescription(e.target.value)
                 }
 
-                placeholder="Describe your task"
+                placeholder="Description"
 
             />
 
 
 
-            <button
-                type="submit"
-            >
+            <button>
+
                 Create Task
+
             </button>
+
 
 
         </form>
 
-    );
+
+    )
 
 }

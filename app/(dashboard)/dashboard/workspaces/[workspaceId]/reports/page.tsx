@@ -1,31 +1,25 @@
-import CreateReportForm from "@/features/dashboard/workspaceDetail/components/CreateReportForm";
-
-
-interface Props {
-
-    params: {
-        workspaceId: string
-    }
-
-}
-
+import CreateReportForm from "@/features/dashboard/reports/components/CreateReportForm";
 
 export default async function ReportsPage({
 
     params
 
-}: Props) {
+}: {
+    params: Promise<{
+        workspaceId: string
+    }>
+}) {
 
 
     const {
         workspaceId
-    } = params;
+    } = await params;
 
 
 
     return (
 
-        <main>
+        <div>
 
             <h1>
                 Reports
@@ -39,8 +33,9 @@ export default async function ReportsPage({
             />
 
 
-        </main>
+        </div>
 
-    );
+
+    )
 
 }

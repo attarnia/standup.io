@@ -1,21 +1,38 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "./prisma";
 
-export async function checkWorkspaceAccess(
-  workspaceId: string,
+
+export async function canAccessWorkspace(
   userId: string,
+  workspaceId: string
 ) {
-  const member = await prisma.workspaceMember.findUnique({
-    where: {
-      workspaceId_userId: {
-        workspaceId,
-        userId,
-      },
-    },
-  });
 
-  if (!member) {
-    throw new Error("Forbidden");
-  }
+  const allMembers =
+    await prisma.workspaceMember.findMany({
+      where:{
+        workspaceId
+      }
+    });
 
-  return member;
+
+  console.log("ALL MEMBERS OF WORKSPACE");
+  console.log(allMembers);
+
+
+  const member =
+    await prisma.workspaceMember.findUnique({
+      where:{
+        workspaceId_userId:{
+          workspaceId,
+          userId
+        }
+      }
+    });
+
+
+  console.log("FOUND MEMBER");
+  console.log(member);
+
+
+  return !!member;
+
 }
