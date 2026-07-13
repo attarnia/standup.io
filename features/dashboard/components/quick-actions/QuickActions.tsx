@@ -5,19 +5,19 @@ const actions = [
   {
     title: "New Project",
     description: "Create a workspace",
-    href: "/dashboard/projects/new",
+    href: "/dashboard/workspaces/new",
     icon: FolderPlus,
   },
   {
     title: "Submit Report",
     description: "Send today's report",
-    href: "/dashboard/report/new",
+    href: "/dashboard/workspaces/",
     icon: Plus,
   },
   {
     title: "Invite Members",
     description: "Add teammates",
-    href: "/dashboard/members",
+    href: "/dashboard/workspaces/",
     icon: Users2,
   },
 ];
