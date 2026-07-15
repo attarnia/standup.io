@@ -1,4 +1,7 @@
+"use client";
+
 import {
+  FileText,
   House,
   Settings,
   Sparkles,
@@ -7,7 +10,10 @@ import {
 } from "lucide-react";
 
 import SidebarItem from "./SidebarItem";
-import SidebarProjects from "./SidebarWorkSpaces";
+import SidebarWorkspaces from "./SidebarWorkSpaces";
+import { useSidebar } from "./sidebar-context";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 type NavItem = {
   label: string;
@@ -21,72 +27,58 @@ type NavSection = {
   component?: React.ReactNode;
 };
 
+// ─── Config ───────────────────────────────────────────────────────────────────
+
 const sections: NavSection[] = [
   {
     title: "General",
     items: [
-      {
-        label: "Dashboard",
-        href: "/dashboard",
-        icon: House,
-      },
-      {
-        label: "Members",
-        href: "/dashboard/members",
-        icon: Users2,
-      },
+      { label: "Dashboard", href: "/dashboard", icon: House },
+      { label: "Members", href: "/dashboard/members", icon: Users2 },
     ],
   },
   {
-    title: "Projects",
-    component: <SidebarProjects />,
+    title: "Workspaces",
+    component: <SidebarWorkspaces />,
   },
   {
-    title: "AI",
+    title: "Tools",
     items: [
-      {
-        label: "AI",
-        href: "/dashboard/ai",
-        icon: Sparkles,
-      },
-    ],
-  },
-  {
-    title: "Reports",
-    items: [
-      {
-        label: "Reports",
-        href: "/dashboard/reports",
-        icon: Sparkles,
-      },
+      { label: "AI", href: "/dashboard/ai", icon: Sparkles },
+      { label: "Reports", href: "/dashboard/reports", icon: FileText },
     ],
   },
 ];
 
-const bottomSection: NavSection = {
-  title: "Preferences",
-  items: [
-    {
-      label: "Settings",
-      href: "/dashboard/settings",
-      icon: Settings,
-    },
-  ],
-};
+const bottomItems: NavItem[] = [
+  { label: "Settings", href: "/dashboard/settings", icon: Settings },
+];
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function SidebarNav() {
+  const { isCollapsed } = useSidebar();
+
   return (
     <nav
       aria-label="Main navigation"
-      className="flex h-full flex-col px-2 py-4"
+      className="flex flex-1 flex-col justify-between overflow-y-auto px-2 py-3"
     >
-      <div>
+      {/* Main sections */}
+      <div className="space-y-4">
         {sections.map((section) => (
-          <section key={section.title}>
+          <section key={section.title} aria-label={section.title}>
+            {/* Section label — hidden when collapsed */}
+            {!isCollapsed && (
+              <p className="mb-1 px-2 text-[11px] font-medium uppercase tracking-wider text-muted/60">
+                {section.title}
+              </p>
+            )}
+
             {section.items && (
-              <ul>
+              <ul role="list" className="space-y-0.5">
                 {section.items.map((item) => (
-                  <li key={item.href} className="my-2">
+                  <li key={item.href}>
                     <SidebarItem href={item.href} icon={item.icon}>
                       {item.label}
                     </SidebarItem>
@@ -94,14 +86,16 @@ export default function SidebarNav() {
                 ))}
               </ul>
             )}
+
             {section.component}
           </section>
         ))}
       </div>
 
-      <div className="mt-auto border-muted pt-4">
-        <ul className="space-y-1">
-          {bottomSection.items?.map((item) => (
+      {/* Bottom settings */}
+      <div className="border-t border-border pt-3">
+        <ul role="list" className="space-y-0.5">
+          {bottomItems.map((item) => (
             <li key={item.href}>
               <SidebarItem href={item.href} icon={item.icon}>
                 {item.label}
