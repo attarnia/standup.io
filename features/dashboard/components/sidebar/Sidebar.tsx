@@ -1,6 +1,6 @@
 "use client";
 
-import { useSidebar, SidebarProvider } from "./sidebar-context";
+import { SidebarProvider, useSidebar } from "./sidebar-context";
 import SidebarHeader from "./SidebarHeader";
 import SidebarNav from "./SidebarNav";
 
