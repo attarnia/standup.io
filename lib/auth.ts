@@ -10,7 +10,6 @@ export async function getCurrentUser() {
 
   if (!user) return null;
 
-  // ← Supabase user داریم، حالا Prisma user رو پیدا می‌کنیم
   const dbUser = await prisma.user.findUnique({
     where: { email: user.email },
   });
