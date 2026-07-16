@@ -5,22 +5,16 @@ import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import { useSidebar } from "./sidebar-context";
 
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface Props {
   href: string;
   icon: LucideIcon;
   children: React.ReactNode;
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function SidebarItem({ href, icon: Icon, children }: Props) {
   const pathname = usePathname();
   const { isCollapsed } = useSidebar();
 
-  // Exact match for /dashboard, prefix match for nested routes
   const isActive =
     href === "/dashboard"
       ? pathname === href

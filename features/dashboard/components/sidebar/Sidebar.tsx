@@ -4,14 +4,12 @@ import { SidebarProvider, useSidebar } from "./sidebar-context";
 import SidebarHeader from "./SidebarHeader";
 import SidebarNav from "./SidebarNav";
 
-// ─── Shell (uses context) ─────────────────────────────────────────────────────
 
 function SidebarShell() {
   const { isCollapsed, isMobileOpen, closeMobile } = useSidebar();
 
   return (
     <>
-      {/* Mobile backdrop */}
       <div
         aria-hidden="true"
         onClick={closeMobile}
@@ -22,7 +20,6 @@ function SidebarShell() {
         `}
       />
 
-      {/* Sidebar */}
       <aside
         className={`
           fixed inset-y-0 left-0 z-50 flex flex-col bg-surface border-r border-border
@@ -39,7 +36,6 @@ function SidebarShell() {
   );
 }
 
-// ─── Sidebar (wraps with provider) ───────────────────────────────────────────
 
 export default function Sidebar() {
   return (
@@ -49,12 +45,7 @@ export default function Sidebar() {
   );
 }
 
-// ─── Mobile trigger (place in layout header) ─────────────────────────────────
-// Usage: <SidebarTrigger />
 
 export function SidebarTrigger() {
-  // Must be a child of the layout that renders <Sidebar />
-  // Wrap your layout with <SidebarProvider> and use useSidebar here
-  // Or handle this with a separate context at the layout level
   return null;
 }

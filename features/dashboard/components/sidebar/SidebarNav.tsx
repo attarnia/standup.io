@@ -6,14 +6,18 @@ import {
   Settings,
   Sparkles,
   Users2,
+  LogOut,
   type LucideIcon,
 } from "lucide-react";
+
+import { useRouter } from "next/navigation";
 
 import SidebarItem from "./SidebarItem";
 import SidebarWorkspaces from "./SidebarWorkSpaces";
 import { useSidebar } from "./sidebar-context";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+import { getSupabaseBrowserClient } from "@/lib/browser-client";
+
 
 type NavItem = {
   label: string;
@@ -27,7 +31,6 @@ type NavSection = {
   component?: React.ReactNode;
 };
 
-// ─── Config ───────────────────────────────────────────────────────────────────
 
 const sections: NavSection[] = [
   {
@@ -51,24 +54,36 @@ const sections: NavSection[] = [
 ];
 
 const bottomItems: NavItem[] = [
-  { label: "Settings", href: "/dashboard/settings", icon: Settings },
+  {
+    label: "Settings",
+    href: "/dashboard/settings",
+    icon: Settings,
+  },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function SidebarNav() {
   const { isCollapsed } = useSidebar();
+
+  const router = useRouter();
+
+  const supabase = getSupabaseBrowserClient();
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+
+    router.replace("/");
+    router.refresh();
+  }
 
   return (
     <nav
       aria-label="Main navigation"
       className="flex flex-1 flex-col justify-between overflow-y-auto px-2 py-3"
     >
-      {/* Main sections */}
       <div className="space-y-4">
         {sections.map((section) => (
           <section key={section.title} aria-label={section.title}>
-            {/* Section label — hidden when collapsed */}
             {!isCollapsed && (
               <p className="mb-1 px-2 text-[11px] font-medium uppercase tracking-wider text-muted/60">
                 {section.title}
@@ -92,8 +107,7 @@ export default function SidebarNav() {
         ))}
       </div>
 
-      {/* Bottom settings */}
-      <div className="border-t border-border pt-3">
+      <div className="border-t border-border pt-3 space-y-1">
         <ul role="list" className="space-y-0.5">
           {bottomItems.map((item) => (
             <li key={item.href}>
@@ -103,6 +117,24 @@ export default function SidebarNav() {
             </li>
           ))}
         </ul>
+
+        <button
+          type="button"
+          onClick={handleSignOut}
+          className={`
+            flex w-full items-center gap-3 rounded-lg px-2 py-2 text-sm
+            text-red-400 transition-colors duration-150
+            hover:bg-red-500/10 hover:text-red-300
+            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400/40
+            ${isCollapsed ? "justify-center" : ""}
+          `}
+        >
+          <LogOut size={17} aria-hidden />
+
+          {!isCollapsed && (
+            <span>Sign out</span>
+          )}
+        </button>
       </div>
     </nav>
   );
