@@ -12,6 +12,12 @@ enum WorkspaceRole {
   MEMBER
 }
 
+enum ReportStatus {
+  IN_PROGRESS
+  BUG
+  DONE
+}
+
 model User {
   id        String   @id
   email     String   @unique
@@ -76,6 +82,8 @@ model Report {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  status ReportStatus @default(IN_PROGRESS)
 
   @@index([workspaceId])
   @@index([creatorId])

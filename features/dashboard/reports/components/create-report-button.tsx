@@ -1,36 +1,52 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { ReportStatus } from "@prisma/client";
+
 import { createReport } from "@/features/dashboard/reports/actions/create-report";
+import { STATUS_META, STATUS_OPTIONS } from "@/features/dashboard/reports/config/status";
+
 
 type Props = {
   workspaceId: string;
 };
 
 export function CreateReportButton({ workspaceId }: Props) {
-  const [open, setOpen] = useState(false);
-  const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+
+  const [status, setStatus] = useState<ReportStatus>("IN_PROGRESS");
+  const [isPending, startTransition] = useTransition();
+
+  function openDialog() {
+    setStatus("IN_PROGRESS");
+    dialogRef.current?.showModal();
+  }
+
+  function closeDialog() {
+    dialogRef.current?.close();
+    formRef.current?.reset();
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setError(null);
 
     const form = e.currentTarget;
     const data = {
-      title: (form.elements.namedItem("title") as HTMLInputElement).value,
-      description: (form.elements.namedItem("description") as HTMLTextAreaElement).value,
+      title: (form.elements.namedItem("title") as HTMLInputElement).value.trim(),
+      description: (form.elements.namedItem("description") as HTMLTextAreaElement).value.trim(),
+      status,
     };
 
     startTransition(async () => {
       try {
         await createReport(workspaceId, data);
-        setOpen(false);
+        closeDialog();
         router.refresh();
-      } catch {
-        setError("Something went wrong. Try again.");
+      } catch (err) {
+        console.error(err);
       }
     });
   }
@@ -38,97 +54,102 @@ export function CreateReportButton({ workspaceId }: Props) {
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
-        className="text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base"
+        type="button"
+        onClick={openDialog}
+        className="shrink-0 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base"
       >
         New Report
       </button>
 
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        >
-          <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-            aria-hidden="true"
-          />
+      <dialog
+        ref={dialogRef}
+        aria-labelledby="create-dialog-title"
+        onClick={(e) => e.target === e.currentTarget && closeDialog()}
+        className="w-[calc(100%-2rem)] max-w-md bg-surface border border-border rounded-xl p-6 shadow-2xl"
+      >
+        <div className="flex flex-col gap-5">
+          <h2 id="create-dialog-title" className="text-base font-semibold text-text">
+            New Report
+          </h2>
 
-          <div className="relative bg-surface border border-border rounded-xl shadow-2xl w-full max-w-md p-6">
-            <h2
-              id="modal-title"
-              className="text-base font-semibold text-text mb-5"
-            >
-              New Report
-            </h2>
+          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Title */}
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="report-title" className="text-xs font-medium text-neutral">
+                Title
+              </label>
+              <input
+                id="report-title"
+                name="title"
+                type="text"
+                required
+                autoFocus
+                placeholder="e.g. Sprint 3 Summary"
+                className="text-sm bg-base border border-border rounded-lg px-3 py-2 text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition"
+              />
+            </div>
 
-              <div>
-                <label
-                  htmlFor="title"
-                  className="block text-xs font-medium text-neutral mb-1.5"
-                >
-                  Title
-                </label>
-                <input
-                  id="title"
-                  name="title"
-                  type="text"
-                  required
-                  autoFocus
-                  placeholder="e.g. Sprint 3 Summary"
-                  className="w-full text-sm bg-base border border-border rounded-lg px-3 py-2 text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition"
-                />
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="report-description" className="text-xs font-medium text-neutral">
+                Description
+                <span className="text-muted font-normal ml-1">(optional)</span>
+              </label>
+              <textarea
+                id="report-description"
+                name="description"
+                rows={3}
+                placeholder="What's this report about?"
+                className="text-sm bg-base border border-border rounded-lg px-3 py-2 text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition resize-none"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs font-medium text-neutral">Status</span>
+              <div className="flex gap-1 p-1 bg-base border border-border rounded-lg">
+                {STATUS_OPTIONS.map((option) => {
+                  const { label, activeClass } = STATUS_META[option];
+                  const isSelected = status === option;
+
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => setStatus(option)}
+                      aria-pressed={isSelected}
+                      className={`flex-1 px-2 py-1.5 text-xs font-medium rounded-md border transition-all duration-150
+                        ${isSelected
+                          ? activeClass
+                          : "text-muted border-transparent hover:text-neutral"
+                        }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
+            </div>
 
-              <div>
-                <label
-                  htmlFor="description"
-                  className="block text-xs font-medium text-neutral mb-1.5"
-                >
-                  Description
-                  <span className="text-muted font-normal ml-1">(optional)</span>
-                </label>
-                <textarea
-                  id="description"
-                  name="description"
-                  rows={3}
-                  placeholder="What's this report about?"
-                  className="w-full text-sm bg-base border border-border rounded-lg px-3 py-2 text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition resize-none"
-                />
-              </div>
+            <div className="flex gap-2 pt-1">
+              <button
+                type="button"
+                onClick={closeDialog}
+                className="flex-1 text-sm font-medium text-muted bg-border hover:text-neutral px-4 py-2 rounded-lg transition-colors duration-150"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={isPending}
+                className="flex-1 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover disabled:opacity-40 px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+              >
+                {isPending ? "Creating…" : "Create"}
+              </button>
+            </div>
 
-              {error && (
-                <p role="alert" className="text-xs text-red-400">
-                  {error}
-                </p>
-              )}
-
-              <div className="flex gap-2 pt-1">
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="flex-1 text-sm font-medium text-muted bg-border hover:text-neutral hover:bg-border/60 px-4 py-2 rounded-lg transition-colors duration-150"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isPending}
-                  className="flex-1 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover disabled:opacity-40 px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-                >
-                  {isPending ? "Creating..." : "Create"}
-                </button>
-              </div>
-
-            </form>
-          </div>
+          </form>
         </div>
-      )}
+      </dialog>
     </>
   );
 }
