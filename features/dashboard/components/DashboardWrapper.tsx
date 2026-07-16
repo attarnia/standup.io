@@ -12,7 +12,8 @@ async function DashboardWrapper() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
+  const fullName =
+    user?.user_metadata?.full_name ?? user?.user_metadata?.name ?? null;
   if (!user) {
     redirect("/auth");
   }
@@ -63,7 +64,7 @@ async function DashboardWrapper() {
 
   return (
     <div>
-      <Hero />
+      <Hero name={fullName} />
       <section className="mt-8 grid grid-cols-1 gap-4 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
         <SummaryCard
           title="Total Workspaces"
