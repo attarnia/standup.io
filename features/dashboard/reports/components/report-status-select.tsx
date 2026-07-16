@@ -21,7 +21,6 @@ type Props = {
   isOwner: boolean;
 };
 
-
 export function ReportStatusSelect({ reportId, status, isOwner }: Props) {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,7 +66,6 @@ export function ReportStatusSelect({ reportId, status, isOwner }: Props) {
 
   const { label, badgeClass } = STATUS_META[optimisticStatus];
 
-
   const badge = (
     <span
       className={`
@@ -82,7 +80,6 @@ export function ReportStatusSelect({ reportId, status, isOwner }: Props) {
   );
 
   if (!isOwner) return badge;
-
 
   return (
     <div ref={containerRef} className="relative">
@@ -102,12 +99,13 @@ export function ReportStatusSelect({ reportId, status, isOwner }: Props) {
           aria-label="Change status"
           className="
             absolute bottom-full left-0 mb-2 z-50
-            min-w-[148px] bg-surface border border-border rounded-xl py-1.5
+            min-w-37 bg-surface border border-border rounded-xl py-1.5
             shadow-[0_8px_32px_rgba(0,0,0,0.5)]
           "
         >
           {STATUS_OPTIONS.map((option) => {
-            const { label: optLabel, badgeClass: optClass } = STATUS_META[option];
+            const { label: optLabel, badgeClass: optClass } =
+              STATUS_META[option];
             const isSelected = option === optimisticStatus;
 
             return (

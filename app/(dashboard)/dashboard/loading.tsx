@@ -1,34 +1,66 @@
-export default function Loading() {
-  return (
-    <div className="mx-auto w-full max-w-7xl space-y-8 px-4 py-8 sm:px-6 lg:px-8">
-      {/* Header skeleton */}
-      <div className="flex items-center justify-between border-b border-border pb-6">
-        <div className="space-y-3">
-          <div className="h-7 w-40 animate-pulse rounded-lg bg-surface" />
-          <div className="h-4 w-64 animate-pulse rounded-lg bg-surface" />
-        </div>
-        <div className="h-10 w-36 animate-pulse rounded-2xl bg-surface" />
-      </div>
+import Skeleton from "@/components/ui/Skeleton";
 
-      {/* Card grid skeleton */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 2xl:grid-cols-3">
-        {Array.from({ length: 6 }).map((_, i) => (
+export default function DashboardLoading() {
+  return (
+    <div className="animate-pulse">
+      {/* Hero */}
+      <div className="h-40 w-full rounded-2xl bg-neutral-900" />
+
+      {/* Summary Cards */}
+      <section className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
-            className="flex h-40 flex-col justify-between rounded-3xl border border-border bg-surface p-6"
+            className="rounded-2xl border border-border bg-surface p-6"
           >
-            <div className="space-y-3">
-              <div className="h-5 w-1/2 animate-pulse rounded-md bg-base" />
-              <div className="h-4 w-full animate-pulse rounded-md bg-base" />
-              <div className="h-4 w-2/3 animate-pulse rounded-md bg-base" />
-            </div>
-            <div className="flex justify-between border-t border-border pt-4">
-              <div className="h-4 w-20 animate-pulse rounded-md bg-base" />
-              <div className="h-4 w-16 animate-pulse rounded-md bg-base" />
+            <div className="flex items-start justify-between">
+              <div className="space-y-3 flex-1">
+                <Skeleton className="h-4 w-32" />
+                <Skeleton className="h-8 w-20" />
+                <Skeleton className="h-3 w-40" />
+              </div>
+
+              <Skeleton className="h-12 w-12 rounded-xl" />
             </div>
           </div>
         ))}
-      </div>
+      </section>
+
+      {/* Content */}
+      <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3 items-start">
+        {/* Reports */}
+        <div className="lg:col-span-2 rounded-2xl border border-border bg-surface p-6">
+          <Skeleton className="mb-6 h-6 w-48" />
+
+          <div className="space-y-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex items-start justify-between rounded-xl border border-border p-4"
+              >
+                <div className="flex-1 space-y-3">
+                  <Skeleton className="h-5 w-52" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-2/3" />
+                </div>
+
+                <Skeleton className="ml-4 h-8 w-20 rounded-full" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="rounded-2xl border border-border bg-surface p-6">
+          <Skeleton className="mb-6 h-6 w-40" />
+
+          <div className="space-y-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton key={i} className="h-12 w-full rounded-xl" />
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

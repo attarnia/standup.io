@@ -4,7 +4,7 @@ import { GroqProvider } from "@/provider/GroqProvider";
 import { OpenAIProvider } from "@/provider/OpenAiProvider";
 
 export const ai = new AIManager([
-  new GroqProvider(),
   new GeminiProvider(),
+  new GroqProvider(),
   new OpenAIProvider(),
 ]);

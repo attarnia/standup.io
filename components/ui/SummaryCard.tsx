@@ -2,11 +2,12 @@ import { LucideIcon } from "lucide-react";
 
 interface SummaryCardProps {
   title: string;
-  value: string | number;
+  value?: string | number;
   description?: string;
   icon: LucideIcon;
   iconBgClass?: string;
   iconClass?: string;
+  loading?: boolean;
 }
 
 export default function SummaryCard({
@@ -16,6 +17,7 @@ export default function SummaryCard({
   icon: Icon,
   iconBgClass = "bg-violet-700/40",
   iconClass = "text-violet-600",
+  loading = false,
 }: SummaryCardProps) {
   return (
     <article className="rounded-3xl bg-surface p-4 sm:p-5 lg:p-6 transition-all duration-200">
@@ -29,19 +31,36 @@ export default function SummaryCard({
           />
         </div>
 
-        <div className="min-w-0 space-y-1.5 sm:space-y-2">
-          <p className="truncate text-xs sm:text-sm font-medium text-muted">
+        <div className="min-w-0 flex-1 space-y-1.5 sm:space-y-2">
+          <p className="truncate text-xs sm:text-sm font-medium text-primary">
             {title}
           </p>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text break-words">
-            {value}
-          </h2>
+          {loading ? (
+            <div className="space-y-2 pt-1">
+              <div className="h-3 w-full animate-pulse rounded bg-muted/20" />
+              <div className="h-3 w-4/5 animate-pulse rounded bg-muted/20" />
+            </div>
+          ) : (
+            <>
+              {value !== undefined && (
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text wrap-break-words">
+                  {value}
+                </h2>
+              )}
 
-          {description && (
-            <p className="text-xs sm:text-sm font-medium text-muted">
-              {description}
-            </p>
+              {description && (
+                <p
+                  className={
+                    value !== undefined
+                      ? "text-xs sm:text-sm font-medium text-muted"
+                      : "text-sm sm:text-base leading-relaxed text-text/90"
+                  }
+                >
+                  {description}
+                </p>
+              )}
+            </>
           )}
         </div>
       </div>
