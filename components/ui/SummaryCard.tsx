@@ -53,8 +53,8 @@ export default function SummaryCard({
                 <p
                   className={
                     value !== undefined
-                      ? "text-xs sm:text-sm font-medium text-muted"
-                      : "text-sm sm:text-base leading-relaxed text-text/90"
+                      ? "text-xs sm:text-sm font-medium text-white"
+                      : "text-sm sm:text-base leading-relaxed text-text"
                   }
                 >
                   {description}

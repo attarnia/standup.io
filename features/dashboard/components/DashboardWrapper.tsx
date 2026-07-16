@@ -1,8 +1,8 @@
+import AiSummaryCard from "@/components/ui/AiSummeryCard";
 import SummaryCard from "@/components/ui/SummaryCard";
 import Hero from "@/features/dashboard/components/Hero";
 import QuickActions from "@/features/dashboard/components/quick-actions/QuickActions";
 import TodayReports from "@/features/dashboard/components/today-reports/TodayReports";
-import { ai } from "@/lib/ai/AiInit";
 import { prisma } from "@/lib/prisma";
 import { createSupabaseServerClient } from "@/lib/server-client";
 import { ClipboardList, Folder, Users2 } from "lucide-react";
@@ -57,36 +57,10 @@ async function DashboardWrapper() {
       distinct: ["userId"],
     }),
   ]);
-  const buildSummaryPrompt = (reports: typeof reportsToday) => {
-    if (reports.length === 0) return null;
-
-    const lines = reports.map(
-      (r) =>
-        `- [${r.status}] "${r.title}" by ${r.creator.name}${
-          r.description ? `: ${r.description}` : ""
-        }`,
-    );
-
-    return `Summarize today's standup reports in 2-3 concise sentences. Highlight any blockers (status BUG) and overall progress.\n\n${lines.join(
-      "\n",
-    )}`;
-  };
 
   const owned = memberships.filter((m) => m.role === "OWNER").length;
   const member = memberships.filter((m) => m.role === "MEMBER").length;
 
-  const prompt = buildSummaryPrompt(reportsToday);
-  let summary: string | null = null;
-  let summaryError: string | null = null;
-
-  if (prompt) {
-    try {
-      const result = await ai.generate(prompt);
-      summary = result.text;
-    } catch (e) {
-      summaryError = e instanceof Error ? e.message : "AI summary unavailable";
-    }
-  }
   return (
     <div>
       <Hero />
@@ -115,17 +89,7 @@ async function DashboardWrapper() {
           iconBgClass="bg-green-700/30"
           iconClass="text-green-600"
         />
-        {summary && (
-          <SummaryCard
-            title="AI Summary"
-            value=""
-            description={summary}
-            icon={ClipboardList}
-          />
-        )}
-        {summaryError && (
-          <p className="text-md text-">Summary unavailable right now.</p>
-        )}
+        <AiSummaryCard workspaceIds={workspaceIds} />
       </section>
       <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3 items-start">
         <div className="lg:col-span-2">

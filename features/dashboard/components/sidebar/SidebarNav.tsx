@@ -8,6 +8,7 @@ import {
   Users2,
   LogOut,
   type LucideIcon,
+  Folder,
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
@@ -17,7 +18,6 @@ import SidebarWorkspaces from "./SidebarWorkSpaces";
 import { useSidebar } from "./sidebar-context";
 
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
-
 
 type NavItem = {
   label: string;
@@ -31,7 +31,6 @@ type NavSection = {
   component?: React.ReactNode;
 };
 
-
 const sections: NavSection[] = [
   {
     title: "General",
@@ -42,7 +41,13 @@ const sections: NavSection[] = [
   },
   {
     title: "Workspaces",
-    component: <SidebarWorkspaces />,
+    items: [
+      {
+        label: "All Workspaces",
+        href: "/dashboard/workspaces",
+        icon: Folder,
+      },
+    ],
   },
   {
     title: "Tools",
@@ -60,7 +65,6 @@ const bottomItems: NavItem[] = [
     icon: Settings,
   },
 ];
-
 
 export default function SidebarNav() {
   const { isCollapsed } = useSidebar();
@@ -131,9 +135,7 @@ export default function SidebarNav() {
         >
           <LogOut size={17} aria-hidden />
 
-          {!isCollapsed && (
-            <span>Sign out</span>
-          )}
+          {!isCollapsed && <span>Sign out</span>}
         </button>
       </div>
     </nav>
