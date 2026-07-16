@@ -10,11 +10,61 @@ const LINKS = [
   { href: "/about", label: "About" },
 ];
 
-export default function Navbar() {
+
+type Props = {
+  firstName?: string | null;
+};
+
+
+export default function Navbar({ firstName }: Props) {
   const [open, setOpen] = useState(false);
-  
+
+  const cta = firstName ? (
+    <Link
+      href="/dashboard"
+      className="hidden md:inline-flex items-center gap-2 bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+    >
+      <span className="size-5 rounded-full bg-white/20 dark:bg-black/20 flex items-center justify-center text-xs font-bold">
+        {firstName[0].toUpperCase()}
+      </span>
+      {firstName}
+    </Link>
+  ) : (
+    <Link
+      href="/auth"
+      className="hidden md:inline-flex bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+    >
+      Get Started
+    </Link>
+  );
+
+  const mobileCta = firstName ? (
+    <li className="pt-2">
+      <Link
+        href="/dashboard"
+        className="block text-center bg-black text-white dark:bg-white dark:text-black py-2 rounded-full text-sm"
+        onClick={() => setOpen(false)}
+      >
+        Go to Dashboard
+      </Link>
+    </li>
+  ) : (
+    <li className="pt-2">
+      <Link
+        href="/auth"
+        className="block text-center bg-black text-white dark:bg-white dark:text-black py-2 rounded-full text-sm"
+        onClick={() => setOpen(false)}
+      >
+        Get Started
+      </Link>
+    </li>
+  );
+
   return (
-    <nav className="wrapper fixed z-50 top-4 left-0 right-0 mx-auto px-4 w-full max-w-3xl"  aria-label="Main Navigation">
+    <nav
+      className="wrapper fixed z-50 top-4 left-0 right-0 mx-auto px-4 w-full max-w-3xl"
+      aria-label="Main Navigation"
+    >
       <div className="liquidGlass-wrapper dock w-full">
         <div className="liquidGlass-effect"></div>
         <div className="liquidGlass-tint"></div>
@@ -47,12 +97,7 @@ export default function Navbar() {
               </div>
 
               <div className="flex items-center gap-4">
-                <Link
-                  href="/auth"
-                  className="hidden md:inline-flex bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
-                >
-                  Get Started
-                </Link>
+                {cta}
 
                 <button
                   type="button"
@@ -67,9 +112,7 @@ export default function Navbar() {
             </div>
 
             {open && (
-              <div
-                className="md:hidden mt-3 pt-3 border-t border-black/5 dark:border-white/10"
-              >
+              <div className="md:hidden mt-3 pt-3 border-t border-black/5 dark:border-white/10">
                 <ul className="flex flex-col gap-2 font-medium text-base pb-2">
                   {LINKS.map((link) => (
                     <li key={link.href}>
@@ -82,15 +125,7 @@ export default function Navbar() {
                       </Link>
                     </li>
                   ))}
-                  <li className="pt-2">
-                    <Link
-                      href="/auth"
-                      className="block text-center bg-black text-white dark:bg-white dark:text-black py-2 rounded-full text-sm"
-                      onClick={() => setOpen(false)}
-                    >
-                      Get Started
-                    </Link>
-                  </li>
+                  {mobileCta}
                 </ul>
               </div>
             )}

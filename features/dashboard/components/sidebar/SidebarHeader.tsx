@@ -2,6 +2,7 @@
 
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useSidebar } from "./sidebar-context";
+import Link from "next/link";
 
 export default function SidebarHeader() {
   const { isCollapsed, toggleCollapse } = useSidebar();
@@ -14,9 +15,11 @@ export default function SidebarHeader() {
       `}
     >
       {!isCollapsed && (
-        <span className="text-base font-bold text-text tracking-tight">
-          StandUp
-        </span>
+        <Link href='/'>
+          <span className="text-base font-bold text-text tracking-tight">
+            StandUp
+          </span>
+        </Link>
       )}
 
       <button
