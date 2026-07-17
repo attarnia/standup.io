@@ -30,9 +30,9 @@ export default function SidebarItem({
       aria-current={isActive ? "page" : undefined}
       title={isCollapsed ? String(children) : undefined}
       className={`
-        group flex w-11 h-11 items-center
+        group flex h-10 items-center
         rounded-xl
-        px-3
+        px-2.25
         transition-colors duration-200
 
         ${
