@@ -37,9 +37,50 @@ export default function AiSummaryCard({
         <button
           type="button"
           onClick={handleGenerate}
-          className="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/20 transition-colors duration-150"
+          className="
+    group relative inline-flex items-center justify-center
+    overflow-hidden rounded-lg
+    bg-[radial-gradient(65.28%_65.28%_at_50%_100%,rgba(223,113,255,.8)_0%,rgba(223,113,255,0)_100%),linear-gradient(0deg,#7a5af8,#7a5af8)]
+    px-3 py-1.5
+    text-xs font-medium text-white
+    transition-all duration-150
+    active:scale-95
+  "
         >
-          Generate summary
+          <span
+            className="
+      absolute inset-0.5
+      rounded-[7px]
+      bg-linear-to-b
+      from-white/20
+      to-transparent
+    "
+          />
+
+          <span className="absolute inset-0 overflow-hidden pointer-events-none">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <i
+                key={i}
+                className="
+          absolute -bottom-2.5
+          h-0.5 w-0.5
+          rounded-full
+          bg-white
+          animate-floating
+        "
+                style={{
+                  left: `${10 + i * 9}%`,
+                  animationDelay: `${i * 0.15}s`,
+                  animationDuration: `${2 + i * 0.05}s`,
+                }}
+              />
+            ))}
+          </span>
+
+          <span className="relative z-10 flex items-center gap-1.5">
+            <Sparkles size={16} aria-hidden />
+            Generate summary
+          </span>
         </button>
       </article>
     );

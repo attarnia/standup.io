@@ -194,6 +194,27 @@ body {
 }
 
 .dock,
-.dock>div {
+.dock > div {
   border-radius: 2rem;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+
+  85% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-55px);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .animate-floating {
+    animation: floating infinite ease-in-out;
+  }
 }
