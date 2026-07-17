@@ -64,7 +64,7 @@ export default async function ReportsPage({ params }: Props) {
                       </div>
 
                       {isOwner && (
-                        <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-150 shrink-0">
+                        <div className="flex items-center gap-0.5 focus-within:opacity-100 transition-opacity duration-150 shrink-0">
                           <EditReportButton
                             reportId={report.id}
                             title={report.title}

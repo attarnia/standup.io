@@ -6,6 +6,7 @@ import { ReportStatus } from "@prisma/client";
 
 import { createReport } from "@/features/dashboard/reports/actions/create-report";
 import { STATUS_META, STATUS_OPTIONS } from "@/features/dashboard/reports/config/status";
+import Link from "next/link";
 
 
 type Props = {
@@ -53,13 +54,18 @@ export function CreateReportButton({ workspaceId }: Props) {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={openDialog}
-        className="shrink-0 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base"
-      >
-        New Report
-      </button>
+      <div className="flex items-center gap-2">
+        <Link href={"/"} className="shrink-0 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base">
+          Members
+        </Link>
+        <button
+          type="button"
+          onClick={openDialog}
+          className="shrink-0 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base"
+        >
+          New Report
+        </button>
+      </div>
 
       <dialog
         ref={dialogRef}
@@ -83,13 +89,12 @@ export function CreateReportButton({ workspaceId }: Props) {
   "
       >
         <div className="flex flex-col gap-5">
-          <h2 id="create-dialog-title" className="text-base font-semibold text-text">
+          <h2 id="create-dialog-title" className="font-semibold text-text">
             New Report
           </h2>
 
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-            {/* Title */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="report-title" className="text-xs font-medium text-neutral">
                 Title
