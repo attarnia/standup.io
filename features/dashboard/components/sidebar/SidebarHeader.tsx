@@ -16,7 +16,7 @@ export default function SidebarHeader() {
     >
       {!isCollapsed && (
         <Link href='/'>
-          <span className="text-base font-bold text-text tracking-tight">
+          <span className="font-bold text-text tracking-tight">
             StandUp
           </span>
         </Link>

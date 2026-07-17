@@ -4,7 +4,6 @@ import {
   FileText,
   House,
   Settings,
-  Sparkles,
   Users2,
   LogOut,
   type LucideIcon,
@@ -14,7 +13,6 @@ import {
 import { useRouter } from "next/navigation";
 
 import SidebarItem from "./SidebarItem";
-import SidebarWorkspaces from "./SidebarWorkSpaces";
 import { useSidebar } from "./sidebar-context";
 
 import { getSupabaseBrowserClient } from "@/lib/browser-client";
@@ -25,36 +23,18 @@ type NavItem = {
   icon: LucideIcon;
 };
 
-type NavSection = {
-  title: string;
-  items?: NavItem[];
-  component?: React.ReactNode;
-};
-
-const sections: NavSection[] = [
+const items: NavItem[] = [
+  { label: "Dashboard", href: "/dashboard", icon: House },
+  { label: "Members", href: "/dashboard/members", icon: Users2 },
   {
-    title: "General",
-    items: [
-      { label: "Dashboard", href: "/dashboard", icon: House },
-      { label: "Members", href: "/dashboard/members", icon: Users2 },
-    ],
+    label: "All Workspaces",
+    href: "/dashboard/workspaces",
+    icon: Folder,
   },
   {
-    title: "Workspaces",
-    items: [
-      {
-        label: "All Workspaces",
-        href: "/dashboard/workspaces",
-        icon: Folder,
-      },
-    ],
-  },
-  {
-    title: "Tools",
-    items: [
-      { label: "AI", href: "/dashboard/ai", icon: Sparkles },
-      { label: "Reports", href: "/dashboard/reports", icon: FileText },
-    ],
+    label: "Reports",
+    href: "/dashboard/reports",
+    icon: FileText,
   },
 ];
 
@@ -85,30 +65,16 @@ export default function SidebarNav() {
       aria-label="Main navigation"
       className="flex flex-1 flex-col justify-between overflow-y-auto px-2 py-3"
     >
-      <div className="space-y-4">
-        {sections.map((section) => (
-          <section key={section.title} aria-label={section.title}>
-            {!isCollapsed && (
-              <p className="mb-1 px-2 text-[11px] font-medium uppercase tracking-wider text-muted/60">
-                {section.title}
-              </p>
-            )}
-
-            {section.items && (
-              <ul role="list" className="space-y-0.5">
-                {section.items.map((item) => (
-                  <li key={item.href}>
-                    <SidebarItem href={item.href} icon={item.icon}>
-                      {item.label}
-                    </SidebarItem>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {section.component}
-          </section>
-        ))}
+      <div>
+        <ul role="list" className="space-y-0.5">
+          {items.map((item) => (
+            <li key={item.href}>
+              <SidebarItem href={item.href} icon={item.icon}>
+                {item.label}
+              </SidebarItem>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="border-t border-border pt-3 space-y-1">

@@ -22,72 +22,49 @@ export default function Navbar({ firstName }: Props) {
   const cta = firstName ? (
     <Link
       href="/dashboard"
-      className="hidden md:inline-flex items-center gap-2 bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+      className="hidden md:flex items-center gap-3 rounded-full border border-border px-2 py-2 hover:bg-primary/5 transition-all backdrop-blur-sm"
     >
-      <span className="size-5 rounded-full bg-white/20 dark:bg-black/20 flex items-center justify-center text-xs font-bold">
-        {firstName[0].toUpperCase()}
+      <span className="text-sm font-medium  px-2 py-1 text-text">
+       Go to Dashboard
       </span>
-      {firstName}
     </Link>
   ) : (
     <Link
       href="/auth"
-      className="hidden md:inline-flex bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+      className="hidden md:inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary-hover transition-colors"
     >
       Get Started
     </Link>
   );
 
-  const mobileCta = firstName ? (
-    <li className="pt-2">
-      <Link
-        href="/dashboard"
-        className="block text-center bg-black text-white dark:bg-white dark:text-black py-2 rounded-full text-sm"
-        onClick={() => setOpen(false)}
-      >
-        Go to Dashboard
-      </Link>
-    </li>
-  ) : (
-    <li className="pt-2">
-      <Link
-        href="/auth"
-        className="block text-center bg-black text-white dark:bg-white dark:text-black py-2 rounded-full text-sm"
-        onClick={() => setOpen(false)}
-      >
-        Get Started
-      </Link>
-    </li>
-  );
-
   return (
     <nav
-      className="wrapper fixed z-50 top-4 left-0 right-0 mx-auto px-4 w-full max-w-3xl"
+      className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full px-3 sm:px-5"
       aria-label="Main Navigation"
     >
-      <div className="liquidGlass-wrapper dock w-full">
+      <div className="liquidGlass-wrapper dock mx-auto w-full max-w-6xl bg-surface/10 border border-border rounded-2xl">
         <div className="liquidGlass-effect"></div>
         <div className="liquidGlass-tint"></div>
         <div className="liquidGlass-shine"></div>
 
-        <div className="liquidGlass-text w-full">
+        <div className="liquidGlass-text w-full text-text">
           <div className="w-full px-4 py-2">
             <div className="flex items-center justify-between w-full">
               <Link
                 href="/"
-                className="text-xl font-black tracking-tight text-gray-900 dark:text-gray-100"
+                className="text-lg sm:text-xl font-black tracking-tight text-text"
                 aria-label="Standup Home"
               >
                 Standup
               </Link>
 
               <div className="hidden md:flex">
-                <ul className="flex items-center gap-6 lg:gap-8 font-semibold text-sm">
+                <ul className="hidden md:flex items-center gap-5 lg:gap-8 font-semibold text-sm">
                   {LINKS.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="nav-link hover:opacity-70 transition-opacity"
+                        className="text-text hover:text-primary transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -102,7 +79,7 @@ export default function Navbar({ firstName }: Props) {
                 <button
                   type="button"
                   onClick={() => setOpen((prev) => !prev)}
-                  className="md:hidden inline-flex items-center justify-center w-10 h-10 text-gray-900 dark:text-gray-100"
+                  className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl text-text hover:bg-white/5 transition-colors"
                   aria-label={open ? "Close menu" : "Open menu"}
                   aria-expanded={open}
                 >
@@ -111,77 +88,52 @@ export default function Navbar({ firstName }: Props) {
               </div>
             </div>
 
-            {open && (
-              <div className="md:hidden mt-3 pt-3 border-t border-black/5 dark:border-white/10">
-                <ul className="flex flex-col gap-2 font-medium text-base pb-2">
-                  {LINKS.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="block py-1 hover:opacity-70"
-                        onClick={() => setOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                  {mobileCta}
-                </ul>
-              </div>
-            )}
+            <div
+              className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${open
+                ? "max-h-96 opacity-100 mt-3 pt-3 border-t border-border"
+                : "max-h-0 opacity-0"
+                }`}
+            >
+              <ul className="flex flex-col gap-1 pb-3">
+                {LINKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center rounded-xl px-2 py-3 text-lg font-medium text-text transition-all duration-200 hover:bg-primary/10 hover:text-primary active:scale-[0.98]"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+
+                <li className="mt-2">
+                  {firstName ? (
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setOpen(false)}
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/10 px-4 py-3 text-sm font-medium text-text backdrop-blur-sm transition-all duration-200 hover:bg-surface hover:border-primary/40 active:scale-[0.98]"
+                    >
+                      <span>Go to Dashboard</span>
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/auth"
+                      onClick={() => setOpen(false)}
+                      className="flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
+                    >
+                      Get Started
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
       {/* <svg className="absolute w-0 h-0 invisible" aria-hidden="true">
-        <filter
-          id="glass-distortion"
-          x="0%"
-          y="0%"
-          width="100%"
-          height="100%"
-          filterUnits="objectBoundingBox"
-        >
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.01 0.01"
-            numOctaves="1"
-            seed="5"
-            result="turbulence"
-          />
-          <feComponentTransfer in="turbulence" result="mapped">
-            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-          </feComponentTransfer>
-          <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-          <feSpecularLighting
-            in="softMap"
-            surfaceScale="5"
-            specularConstant="1"
-            specularExponent="100"
-            lightingColor="white"
-            result="specLight"
-          >
-            <fePointLight x="-200" y="-200" z="300" />
-          </feSpecularLighting>
-          <feComposite
-            in="specLight"
-            operator="arithmetic"
-            k1="0"
-            k2="1"
-            k3="1"
-            k4="0"
-            result="litImage"
-          />
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="softMap"
-            scale="50"
-            xChannelSelector="R"
-            yChannelSelector="G"
-          />
-        </filter>
+        ...
       </svg> */}
     </nav>
   );
