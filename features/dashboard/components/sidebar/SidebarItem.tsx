@@ -30,10 +30,10 @@ export default function SidebarItem({
       aria-current={isActive ? "page" : undefined}
       title={isCollapsed ? String(children) : undefined}
       className={`
-        group flex h-10 items-center
+        group flex h-10.25 items-center
         rounded-xl
-        px-2.25
-        transition-colors duration-200
+        px-2.5
+        transition-colors duration-100
 
         ${
           isActive
@@ -54,7 +54,7 @@ export default function SidebarItem({
         className={`
           overflow-hidden whitespace-nowrap
           transition-[max-width,opacity,margin]
-          duration-300 ease-in-out
+          duration-200 ease-in-out
 
           ${
             isCollapsed
