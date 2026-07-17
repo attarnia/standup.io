@@ -38,7 +38,7 @@ export default function AiSummaryCard({
           type="button"
           onClick={handleGenerate}
           className="
-    group relative inline-flex items-center justify-center
+    group relative cursor-pointer inline-flex items-center justify-center
     overflow-hidden rounded-lg
     bg-[radial-gradient(65.28%_65.28%_at_50%_100%,rgba(223,113,255,.8)_0%,rgba(223,113,255,0)_100%),linear-gradient(0deg,#7a5af8,#7a5af8)]
     px-3 py-1.5
