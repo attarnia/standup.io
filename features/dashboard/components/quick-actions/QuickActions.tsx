@@ -24,7 +24,7 @@ const actions = [
 
 export default function QuickActions() {
   return (
-    <div className="rounded-3xl bg-surface p-6">
+    <div className="rounded-3xl bg-surface border border-border p-6">
       <h2 className="text-lg font-semibold">Quick Actions</h2>
       <p className="mt-1 text-sm text-muted">
         Frequently used actions.

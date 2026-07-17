@@ -16,7 +16,7 @@ export default function TodayReports({ reports }: { reports: Report[] }) {
   return (
     <section
       aria-labelledby="today-reports-heading"
-      className="bg-surface rounded-3xl p-6"
+      className="bg-surface border border-border rounded-3xl p-6"
     >
       <header className="mb-6 flex items-center justify-between">
         <div>

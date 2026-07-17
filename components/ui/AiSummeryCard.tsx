@@ -26,7 +26,7 @@ export default function AiSummaryCard({
 
   if (!summary && !isPending) {
     return (
-      <article className="rounded-3xl bg-surface p-4 sm:p-5 lg:p-6 flex flex-col items-start gap-3">
+      <article className="rounded-3xl bg-surface border border-border p-4 sm:p-5 lg:p-6 flex flex-col items-start gap-3">
         <div className="flex items-center gap-2 text-sm font-medium text-primary">
           <Sparkles size={16} aria-hidden />
           AI Summary

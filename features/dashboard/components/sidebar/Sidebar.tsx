@@ -26,7 +26,7 @@ function SidebarShell() {
           transition-all duration-300 ease-in-out
           md:relative md:translate-x-0
           ${isMobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-          ${isCollapsed ? "w-[72px]" : "w-64"}
+          ${isCollapsed ? "w-18" : "w-64"}
         `}
       >
         <SidebarHeader />
