@@ -8,7 +8,9 @@ export async function getCurrentUser() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) return null;
+  if (!user?.email) {
+    return null;
+  }
 
   const dbUser = await prisma.user.findUnique({
     where: { email: user.email },

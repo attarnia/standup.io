@@ -133,7 +133,7 @@ export default function Navbar({ firstName }: Props) {
         </div>
       </div>
 
-      <svg className="absolute w-0 h-0 invisible" aria-hidden="true">
+      {/* <svg className="absolute w-0 h-0 invisible" aria-hidden="true">
         <filter
           id="glass-distortion"
           x="0%"
@@ -182,7 +182,7 @@ export default function Navbar({ firstName }: Props) {
             yChannelSelector="G"
           />
         </filter>
-      </svg>
+      </svg> */}
     </nav>
   );
 }

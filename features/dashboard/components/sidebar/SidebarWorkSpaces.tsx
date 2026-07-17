@@ -7,21 +7,18 @@ import { ChevronDown, Folder } from "lucide-react";
 import { useSidebar } from "./sidebar-context";
 
 
-// ─── Mock data (replace with real fetch) ──────────────────────────────────────
 
 const workspaces = [
   { id: "1", name: "Frontend", href: "/dashboard/workspaces/1", count: 5 },
   { id: "2", name: "Backend", href: "/dashboard/workspaces/2", count: 3 },
 ];
 
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function SidebarWorkspaces() {
   const [isOpen, setIsOpen] = useState(true);
   const { isCollapsed } = useSidebar();
   const pathname = usePathname();
 
-  // When sidebar is collapsed, show only the folder icon
   if (isCollapsed) {
     return (
       <Link
@@ -37,7 +34,6 @@ export default function SidebarWorkspaces() {
 
   return (
     <div>
-      {/* Section trigger */}
       <div className="flex items-center rounded-lg transition-colors duration-150 hover:bg-border/60 group">
         <Link
           href="/dashboard/workspaces"
@@ -62,7 +58,6 @@ export default function SidebarWorkspaces() {
         </button>
       </div>
 
-      {/* Animated list — CSS grid trick for height: auto animation */}
       <div
         className={`
           grid transition-all duration-300 ease-in-out

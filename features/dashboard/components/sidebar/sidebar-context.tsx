@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useState } from "react";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
 
 type SidebarContextType = {
     isCollapsed: boolean;
@@ -12,7 +11,6 @@ type SidebarContextType = {
     closeMobile: () => void;
 };
 
-// ─── Context ──────────────────────────────────────────────────────────────────
 
 const SidebarContext = createContext<SidebarContextType | null>(null);
 
