@@ -39,7 +39,7 @@ export default function SidebarNav() {
       className="flex flex-1 flex-col justify-between overflow-y-auto px-2 py-3"
     >
       <div>
-        <ul role="list" className="space-y-0.5">
+        <ul role="list" className="space-y-2">
           {items.map((item) => (
             <li key={item.href}>
               <SidebarItem href={item.href} icon={item.icon}>

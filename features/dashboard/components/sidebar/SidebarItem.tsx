@@ -11,7 +11,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function SidebarItem({ href, icon: Icon, children }: Props) {
+export default function SidebarItem({
+  href,
+  icon: Icon,
+  children,
+}: Props) {
   const pathname = usePathname();
   const { isCollapsed } = useSidebar();
 
@@ -26,21 +30,41 @@ export default function SidebarItem({ href, icon: Icon, children }: Props) {
       aria-current={isActive ? "page" : undefined}
       title={isCollapsed ? String(children) : undefined}
       className={`
-        flex items-center gap-3 rounded-lg px-2 py-2 text-sm
-        transition-colors duration-150
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
-        ${isCollapsed ? "justify-center" : ""}
-        ${isActive
-          ? "bg-border text-text font-medium"
-          : "text-muted hover:bg-border/60 hover:text-neutral"
+        group flex w-11 h-11 items-center
+        rounded-xl
+        px-3
+        transition-colors duration-200
+
+        ${
+          isActive
+            ? "bg-border text-text"
+            : "text-muted hover:bg-border/60 hover:text-neutral"
         }
       `}
     >
-      <Icon size={17} aria-hidden className="shrink-0" />
+      <span className="flex h-5 w-5 shrink-0 items-center justify-center">
+        <Icon
+          size={18}
+          aria-hidden
+          className="transition-transform duration-200 group-hover:scale-110"
+        />
+      </span>
 
-      {!isCollapsed && (
-        <span className="truncate">{children}</span>
-      )}
+      <span
+        className={`
+          overflow-hidden whitespace-nowrap
+          transition-[max-width,opacity,margin]
+          duration-300 ease-in-out
+
+          ${
+            isCollapsed
+              ? "ml-0 max-w-0 opacity-0"
+              : "ml-3 max-w-45 opacity-100"
+          }
+        `}
+      >
+        {children}
+      </span>
     </Link>
   );
 }
