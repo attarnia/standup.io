@@ -14,8 +14,6 @@ export async function canAccessWorkspace(
     });
 
 
-  console.log("ALL MEMBERS OF WORKSPACE");
-  console.log(allMembers);
 
 
   const member =
@@ -29,8 +27,6 @@ export async function canAccessWorkspace(
     });
 
 
-  console.log("FOUND MEMBER");
-  console.log(member);
 
 
   return !!member;
