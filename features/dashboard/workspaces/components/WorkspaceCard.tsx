@@ -15,7 +15,7 @@ export default function WorkspaceCard({
     role,
 }: Workspace) {
     return (
-        <Link href={`/dashboard/workspaces/${id}/member`}>
+        <Link href={`/dashboard/workspaces/${id}/reports`}>
         <article className="flex h-full flex-col rounded-3xl border border-border bg-surface p-6 transition-colors duration-200 hover:border-muted/40">
             <header className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
