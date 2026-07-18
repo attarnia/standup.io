@@ -1,9 +1,13 @@
+import DashboardSkeleton from "@/components/DashboardSkeleton";
 import DashboardWrapper from "@/features/dashboard/components/DashboardWrapper";
+import { Suspense } from "react";
 
 const page = () => {
   return (
     <>
-      <DashboardWrapper />
+      <Suspense fallback={<DashboardSkeleton />}>
+        <DashboardWrapper />
+      </Suspense>
     </>
   );
 };

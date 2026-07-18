@@ -1,16 +1,13 @@
-import { getUserWorkspaces } from "@/action/workspace";
-import WorkspaceHeader from "@/features/dashboard/workspaces/components/WorkspaceHeader";
-import WorkspaceList from "@/features/dashboard/workspaces/components/WorkspaceList";
-import { toUIWorkspace } from "@/lib/mappers/workspace";
+import WorkspaceListSkeleton from "@/components/WorkSpaceListSkeleton";
+import WorkspaceWrapper from "@/features/dashboard/workspaces/components/WorkspaceWrapper";
+import { Suspense } from "react";
 
-export default async function WorkspacesPage() {
-  const memberships = await getUserWorkspaces();
-  const workspaces = memberships.map(toUIWorkspace);
-
+export default function WorkspacesPage() {
   return (
-    <main className="mx-auto max-w-7xl space-y-8 px-4 py-8 sm:px-6 lg:px-8">
-      <WorkspaceHeader />
-      <WorkspaceList workspaces={workspaces} />
-    </main>
+    <>
+      <Suspense fallback={<WorkspaceListSkeleton />}>
+        <WorkspaceWrapper />
+      </Suspense>
+    </>
   );
 }
