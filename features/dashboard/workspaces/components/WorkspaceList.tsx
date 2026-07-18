@@ -16,7 +16,7 @@ export default function WorkspaceList({
   return (
     <section
       aria-label="Workspace list"
-      className="grid grid-cols-1 gap-5 sm:grid-cols-2 2xl:grid-cols-3"
+      className="grid  grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-3 2xl:grid-cols-3"
     >
       {workspaces.map((workspace) => (
         <WorkspaceCard

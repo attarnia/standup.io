@@ -43,6 +43,7 @@ body {
   color: var(--text-color);
   font-family: var(--font-geist-sans), sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @layer base {

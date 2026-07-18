@@ -61,11 +61,11 @@ async function DashboardWrapper() {
 
   const owned = memberships.filter((m) => m.role === "OWNER").length;
   const member = memberships.filter((m) => m.role === "MEMBER").length;
-
+console.log(reportsToday);
   return (
     <div>
       <Hero name={fullName} />
-      <section className="mt-8 grid grid-cols-1 gap-4 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <section className="mt-8 grid grid-cols-2 gap-4 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
         <SummaryCard
           title="Total Workspaces"
           value={memberships.length}

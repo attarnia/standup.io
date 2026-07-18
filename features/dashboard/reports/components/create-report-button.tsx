@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { ReportStatus } from "@prisma/client";
 
 import { createReport } from "@/features/dashboard/reports/actions/create-report";
-import { STATUS_META, STATUS_OPTIONS } from "@/features/dashboard/reports/config/status";
+import {
+  STATUS_META,
+  STATUS_OPTIONS,
+} from "@/features/dashboard/reports/config/status";
 import Link from "next/link";
-
 
 type Props = {
   workspaceId: string;
@@ -36,8 +38,12 @@ export function CreateReportButton({ workspaceId }: Props) {
 
     const form = e.currentTarget;
     const data = {
-      title: (form.elements.namedItem("title") as HTMLInputElement).value.trim(),
-      description: (form.elements.namedItem("description") as HTMLTextAreaElement).value.trim(),
+      title: (
+        form.elements.namedItem("title") as HTMLInputElement
+      ).value.trim(),
+      description: (
+        form.elements.namedItem("description") as HTMLTextAreaElement
+      ).value.trim(),
       status,
     };
 
@@ -55,7 +61,10 @@ export function CreateReportButton({ workspaceId }: Props) {
   return (
     <>
       <div className="flex items-center gap-2">
-        <Link href={"/"} className="shrink-0 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base">
+        <Link
+          href={`/dashboard/workspaces/${workspaceId}/member`}
+          className="shrink-0 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary-hover px-4 py-2 rounded-lg transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-base"
+        >
           Members
         </Link>
         <button
@@ -93,10 +102,16 @@ export function CreateReportButton({ workspaceId }: Props) {
             New Report
           </h2>
 
-          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
-
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4"
+          >
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="report-title" className="text-xs font-medium text-neutral">
+              <label
+                htmlFor="report-title"
+                className="text-xs font-medium text-neutral"
+              >
                 Title
               </label>
               <input
@@ -111,7 +126,10 @@ export function CreateReportButton({ workspaceId }: Props) {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="report-description" className="text-xs font-medium text-neutral">
+              <label
+                htmlFor="report-description"
+                className="text-xs font-medium text-neutral"
+              >
                 Description
                 <span className="text-muted font-normal ml-1">(optional)</span>
               </label>
@@ -138,9 +156,10 @@ export function CreateReportButton({ workspaceId }: Props) {
                       onClick={() => setStatus(option)}
                       aria-pressed={isSelected}
                       className={`flex-1 px-2 py-1.5 text-xs font-medium rounded-md border transition-all duration-150
-                        ${isSelected
-                          ? activeClass
-                          : "text-muted border-transparent hover:text-neutral"
+                        ${
+                          isSelected
+                            ? activeClass
+                            : "text-muted border-transparent hover:text-neutral"
                         }`}
                     >
                       {label}
@@ -166,7 +185,6 @@ export function CreateReportButton({ workspaceId }: Props) {
                 {isPending ? "Creating…" : "Create"}
               </button>
             </div>
-
           </form>
         </div>
       </dialog>
