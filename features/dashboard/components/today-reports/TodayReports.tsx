@@ -36,31 +36,31 @@ export default function TodayReports({ reports }: { reports: Report[] }) {
   return (
     <section
       aria-labelledby="today-reports-heading"
-      className="bg-surface border border-border rounded-3xl p-6"
+      className="rounded-2xl lg:rounded-3xl border border-border bg-surface p-4 sm:p-5 lg:p-6"
     >
-      <header className="mb-6 flex items-center justify-between">
-        <div>
+      <header className="mb-5">
+        <div className="flex items-center justify-between gap-4">
           <h2
             id="today-reports-heading"
-            className="text-xl font-semibold text-text"
+            className="text-lg font-semibold text-text sm:text-xl"
           >
             {"Today's"} Standup Reports
           </h2>
 
-          <p className="mt-1 text-sm text-muted">
-            Latest reports submitted today.
-          </p>
+          <Link
+            href="/dashboard/reports"
+            className="shrink-0 text-sm font-medium text-text transition-opacity hover:opacity-70"
+          >
+            View all
+          </Link>
         </div>
 
-        <Link
-          href="/dashboard/reports"
-          className="text-sm font-medium text-text hover:underline"
-        >
-          View all
-        </Link>
+        <p className="mt-2 text-sm text-muted">
+          Latest reports submitted today.
+        </p>
       </header>
 
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {reports.length === 0 ? (
           <p className="text-sm text-muted">
             No reports have been submitted today.
