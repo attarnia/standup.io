@@ -1,19 +1,23 @@
 import UserProfile from "@/components/ui/UserProfile";
 
-export default function Hero({name}: {name: string}) {
-    return (
-        <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <section>
-                <p className="mt-2 text-text font-bold">
-                    Hi, {name} 👋 Welcome back!
-                </p>
-            </section>
+type HeroProps = {
+  name: string;
+};
 
-            <aside>
-                <UserProfile
-                    name={name}
-                />
-            </aside>
-        </header>
-    );
+export default function Hero({ name }: HeroProps) {
+  return (
+    <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <section className="max-w-2xl">
+        <h1 className="text-3xl font-bold tracking-tight text-text">
+          Dashboard
+        </h1>
+
+        <p className="mt-2 text-muted">
+          Manage standups, collaborate with your team, and keep every update in one place.
+        </p>
+      </section>
+
+      <UserProfile name={name} />
+    </header>
+  );
 }
