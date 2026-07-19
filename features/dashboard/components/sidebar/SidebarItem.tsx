@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
+
 import { useSidebar } from "./sidebar-context";
+
 
 interface Props {
   href: string;
@@ -11,13 +13,10 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function SidebarItem({
-  href,
-  icon: Icon,
-  children,
-}: Props) {
+
+export default function SidebarItem({ href, icon: Icon, children }: Props) {
   const pathname = usePathname();
-  const { isCollapsed } = useSidebar();
+  const { isCollapsed, close } = useSidebar();
 
   const isActive =
     href === "/dashboard"
@@ -27,18 +26,18 @@ export default function SidebarItem({
   return (
     <Link
       href={href}
+      onClick={close}
       aria-current={isActive ? "page" : undefined}
       title={isCollapsed ? String(children) : undefined}
       className={`
-        group flex h-10.25 items-center
-        rounded-xl
-        px-2.5
+        group flex h-10 items-center
+        rounded-xl px-4
         transition-colors duration-100
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
 
-        ${
-          isActive
-            ? "bg-border text-text"
-            : "text-muted hover:bg-border/60 hover:text-neutral"
+        ${isActive
+          ? "bg-border text-text"
+          : "text-muted hover:bg-border/60 hover:text-neutral"
         }
       `}
     >
@@ -53,14 +52,8 @@ export default function SidebarItem({
       <span
         className={`
           overflow-hidden whitespace-nowrap
-          transition-[max-width,opacity,margin]
-          duration-200 ease-in-out
-
-          ${
-            isCollapsed
-              ? "ml-0 max-w-0 opacity-0"
-              : "ml-3 max-w-45 opacity-100"
-          }
+          transition-[max-width,opacity,margin] duration-200 ease-in-out
+          ${isCollapsed ? "ml-0 max-w-0 opacity-0" : "ml-3 max-w-45 opacity-100"}
         `}
       >
         {children}
