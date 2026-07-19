@@ -5,7 +5,6 @@ import { ReportStatus } from "@prisma/client";
 import { STATUS_META } from "@/features/dashboard/reports/config/status";
 import ReportCard from "./ReportCard";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
 
 type Report = {
   id: string;
@@ -19,20 +18,18 @@ type Report = {
   };
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function TodayReports({ reports }: { reports: Report[] }) {
   return (
     <section
       aria-labelledby="today-reports-heading"
-      className="rounded-2xl lg:rounded-3xl border border-border bg-surface"
+      className="rounded-2xl lg:rounded-3xl border pb-5 border-border bg-surface"
     >
-      {/* Header */}
       <header className="flex items-center justify-between gap-4 px-4 py-4 sm:px-5 sm:py-5 border-b border-border">
         <div className="min-w-0">
           <h2
             id="today-reports-heading"
-            className="text-base font-semibold text-text sm:text-lg truncate"
+            className="font-semibold text-text sm:text-lg truncate"
           >
             {"Today's"} Standup Reports
           </h2>
@@ -51,7 +48,6 @@ export default function TodayReports({ reports }: { reports: Report[] }) {
         </Link>
       </header>
 
-      {/* Reports */}
       {reports.length === 0 ? (
         <div className="flex items-center justify-center py-12 px-4">
           <p className="text-sm text-muted text-center">
