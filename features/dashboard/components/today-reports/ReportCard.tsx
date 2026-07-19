@@ -1,20 +1,24 @@
 import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+
 interface ReportCardProps {
+  title: string;
   name: string;
   avatar?: string | null;
   submittedAt: string;
-
   badge: {
     label: string;
-    variant: "default" | "success" | "warning" | "primary" | "failed";
+    badgeClass: string;
   };
-
-  content: string;
+  content?: string | null;
 }
 
+// ─── Component ────────────────────────────────────────────────────────────────
+
 export default function ReportCard({
+  title,
   name,
   avatar,
   submittedAt,
@@ -41,17 +45,23 @@ export default function ReportCard({
 
           <div>
             <h3 className="font-semibold">{name}</h3>
-
             <time className="text-sm text-muted">{submittedAt}</time>
           </div>
         </div>
 
-        <Badge variant={badge.variant}>{badge.label}</Badge>
+        <span
+          className={`inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded-full border ${badge.badgeClass}`}
+        >
+          {badge.label}
+        </span>
       </header>
 
-      <p className="mt-4 line-clamp-2 text-sm leading-6 text-muted">
-        {content}
-      </p>
+      <div className="mt-4 space-y-1">
+        <p className="text-sm font-medium text-text">{title}</p>
+        {content && (
+          <p className="line-clamp-2 text-sm leading-6 text-muted">{content}</p>
+        )}
+      </div>
     </article>
   );
 }
