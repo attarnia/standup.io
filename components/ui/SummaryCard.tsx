@@ -22,13 +22,12 @@ export default function SummaryCard({
   loading = false,
 }: SummaryCardProps) {
   return (
-    <article className="rounded-3xl bg-surface border border-border p-4 sm:p-5 lg:p-6 transition-all duration-200">
-      <div className="flex items-start gap-4 sm:gap-5 lg:gap-6">
-
+    <article className="h-full rounded-2xl sm:rounded-3xl bg-surface border border-border p-4 sm:p-5 lg:p-6 transition-all duration-200">
+      <div className="flex items-start gap-3 sm:gap-4 lg:gap-6">
         <div
           className={`
-            flex h-11 w-11 sm:h-12 sm:w-12 shrink-0
-            items-center justify-center
+            flex h-10 w-10 sm:h-11 sm:w-11 lg:h-12 lg:w-12
+            shrink-0 items-center justify-center
             rounded-xl ring-1
             ${iconBgClass}
           `}
@@ -36,11 +35,11 @@ export default function SummaryCard({
           <Icon
             aria-hidden="true"
             strokeWidth={1.75}
-            className={`h-5 w-5 sm:h-5 sm:w-5 drop-shadow-sm ${iconClass}`}
+            className={`h-4 w-4 sm:h-5 sm:w-5 drop-shadow-sm ${iconClass}`}
           />
         </div>
 
-        <div className="min-w-0 flex-1 space-y-1.5 sm:space-y-2">
+        <div className="min-w-0 flex-1 space-y-1 sm:space-y-2">
           <p className="truncate text-xs sm:text-sm font-medium text-muted">
             {title}
           </p>
@@ -53,19 +52,24 @@ export default function SummaryCard({
           ) : (
             <>
               {value !== undefined && (
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text">
+                <h2 className="wrap-break-word text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-text">
                   {value}
                 </h2>
               )}
+
               {description && (
-                <p className={`text-xs sm:text-sm font-medium ${value !== undefined ? "text-muted" : "text-text leading-relaxed"}`}>
+                <p
+                  className={`wrap-break-word text-xs sm:text-sm font-medium ${value !== undefined
+                      ? "text-muted"
+                      : "text-text leading-relaxed"
+                    }`}
+                >
                   {description}
                 </p>
               )}
             </>
           )}
         </div>
-
       </div>
     </article>
   );
