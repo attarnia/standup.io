@@ -10,7 +10,7 @@ export default function WorkspaceHeader() {
           Workspaces
         </h1>
 
-        <p className="mt-2 text-sm leading-6 text-muted">
+        <p className="mt-2 leading-5 text-muted">
           Manage your workspaces, collaborate with your team, and organize every
           project in one place.
         </p>
