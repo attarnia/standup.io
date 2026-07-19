@@ -32,6 +32,8 @@ async function DashboardWrapper() {
   });
 
   const workspaceIds = memberships.map((m) => m.workspaceId);
+  const threeDaysAgo = new Date();
+  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
   const [reportsToday, totalMembers] = await Promise.all([
     prisma.report.findMany({
@@ -40,7 +42,7 @@ async function DashboardWrapper() {
           in: workspaceIds,
         },
         createdAt: {
-          gte: new Date(new Date().setHours(0, 0, 0, 0)),
+          gte: threeDaysAgo,
         },
       },
       include: {
@@ -61,10 +63,10 @@ async function DashboardWrapper() {
       distinct: ["userId"],
     }),
   ]);
-
+  const rep = await prisma.report.findMany();
   const owned = memberships.filter((m) => m.role === "OWNER").length;
   const member = memberships.filter((m) => m.role === "MEMBER").length;
-  console.log(reportsToday);
+  console.log(rep);
   return (
     <div>
       <Hero name={fullName} />

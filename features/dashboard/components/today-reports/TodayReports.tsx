@@ -6,12 +6,32 @@ type Report = {
   title: string;
   description: string | null;
   createdAt: Date;
+  status: "BUG" | "DONE" | "IN_PROGRESS";
   creator: {
     name: string | null;
     email: string;
   };
 };
-
+const statusMap: Record<
+  Report["status"],
+  {
+    label: string;
+    variant: "default" | "success" | "warning" | "primary";
+  }
+> = {
+  BUG: {
+    label: "Bug",
+    variant: "warning",
+  },
+  DONE: {
+    label: "Done",
+    variant: "success",
+  },
+  IN_PROGRESS: {
+    label: "In Progress",
+    variant: "primary",
+  },
+};
 export default function TodayReports({ reports }: { reports: Report[] }) {
   return (
     <section
@@ -55,10 +75,7 @@ export default function TodayReports({ reports }: { reports: Report[] }) {
                 minute: "2-digit",
                 hour12: true,
               }).format(new Date(report.createdAt))}
-              badge={{
-                label: "DONE",
-                variant: "success",
-              }}
+              badge={statusMap[report.status]}
               content={report.description ?? report.title}
             />
           ))
