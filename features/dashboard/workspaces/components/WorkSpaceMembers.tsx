@@ -9,6 +9,7 @@ import {
   transferOwnership,
   regenerateInviteCode,
   leaveWorkspace,
+  deleteWorkSpace,
 } from "@/action/workspace";
 
 type Member = {
@@ -35,10 +36,30 @@ export default function WorkspaceMembers({
   const [error, setError] = useState("");
   const [busyId, setBusyId] = useState<string | null>(null);
   const [leave, setLeave] = useState<boolean>(false);
+  const [deleting, setDeleting] = useState<boolean>(false);
+
   const router = useRouter();
 
   const isOwner = currentUserRole === "OWNER";
   const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/join/${workspace.inviteCode}`;
+
+  async function handelDelete() {
+    setError("");
+    const confirmed = window.confirm(
+      `Delete "${workspace.name}"?\n\nThis will permanently delete the workspace, all reports, members, and related data. This action cannot be undone.`,
+    );
+    if (!confirmed) return;
+    setDeleting(true);
+
+    try {
+      await deleteWorkSpace(workspace.id);
+      router.push("/dashboard/workspaces");
+      router.refresh();
+    } catch (e: any) {
+      setError(e.message);
+      setDeleting(false);
+    }
+  }
 
   async function handelLeave() {
     setError("");
@@ -202,6 +223,25 @@ export default function WorkspaceMembers({
           {leave ? "Leaving..." : "Leave workspace"}
         </button>
       </div>
+      {isOwner && (
+        <div className="rounded-2xl border border-red-600/30 bg-red-600/5 p-5">
+          <p className="text-sm font-semibold text-red-400">Delete workspace</p>
+
+          <p className="mt-1 text-sm text-muted">
+            Permanently delete <strong>{workspace.name}</strong>, including all
+            reports, members, invite links, and other associated data. This
+            action cannot be undone.
+          </p>
+
+          <button
+            onClick={handelDelete}
+            disabled={deleting}
+            className="mt-3 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {deleting ? "Deleting..." : "Delete workspace"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -227,3 +227,30 @@ export async function regenerateInviteCode(workspaceId: string) {
   revalidatePath(`/workspaces/${workspaceId}`);
   return workspace.inviteCode;
 }
+
+export async function deleteWorkSpace(workspaceId: string) {
+  const user = await requireUser();
+
+  const membership = await prisma.workspaceMember.findUnique({
+    where: {
+      workspaceId_userId: {
+        workspaceId,
+        userId: user.id,
+      },
+    },
+  });
+
+  if (!membership || membership.role !== "OWNER") {
+    throw new Error("Only the owner can delete the workspace");
+  }
+
+  await prisma.workspace.delete({
+    where: {
+      id: workspaceId,
+    },
+  });
+
+  revalidatePath("/dashboard/workspaces");
+
+  return { success: true };
+}

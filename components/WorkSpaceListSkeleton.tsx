@@ -3,43 +3,41 @@ import Skeleton from "./ui/Skeleton";
 export default function WorkspaceListSkeleton() {
   return (
     <section
-      aria-label="Workspace list loading"
-      className="grid grid-cols-1 gap-5 sm:grid-cols-2 2xl:grid-cols-3"
+      aria-label="Loading workspaces"
+      className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
     >
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div
-          key={i}
-          className="rounded-3xl border border-white/10 bg-white/5 p-5"
+      {Array.from({ length: 6 }).map((_, index) => (
+        <article
+          key={index}
+          className="rounded-3xl border border-white/10 bg-white/[0.04] p-6"
         >
           {/* Header */}
           <div className="flex items-start justify-between">
             <div className="space-y-3">
-              <Skeleton className="h-6 w-40" />
-              <Skeleton className="h-4 w-56" />
+              <Skeleton className="h-6 w-44 rounded-md" />
+              <Skeleton className="h-4 w-52 rounded-md" />
             </div>
 
-            <Skeleton className="h-10 w-10 rounded-xl" />
+            {/* Owner Badge */}
+            <Skeleton className="h-7 w-16 rounded-full" />
           </div>
 
-          {/* Workspace stats */}
-          <div className="mt-8 grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-white/10 p-3">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="mt-3 h-7 w-12" />
-            </div>
-
-            <div className="rounded-xl border border-white/10 p-3">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="mt-3 h-7 w-12" />
-            </div>
-          </div>
+          {/* Divider */}
+          <div className="my-5 h-px bg-white/10" />
 
           {/* Footer */}
-          <div className="mt-6 flex items-center justify-between">
-            <Skeleton className="h-4 w-24" />
-            <Skeleton className="h-9 w-24 rounded-xl" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Skeleton className="size-4 rounded-full" />
+              <Skeleton className="h-4 w-20 rounded-md" />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Skeleton className="size-4 rounded-full" />
+              <Skeleton className="h-4 w-20 rounded-md" />
+            </div>
           </div>
-        </div>
+        </article>
       ))}
     </section>
   );

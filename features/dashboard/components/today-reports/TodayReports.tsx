@@ -29,7 +29,7 @@ const statusMap: Record<
   },
   IN_PROGRESS: {
     label: "In Progress",
-    variant: "primary",
+    variant: "warning",
   },
 };
 export default function TodayReports({ reports }: { reports: Report[] }) {

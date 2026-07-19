@@ -89,7 +89,7 @@ export default function AiSummaryCard({
     <SummaryCard
       title="AI Summary"
       description={summary ?? undefined}
-      icon={ClipboardList}
+      icon={Sparkles}
       loading={isPending}
     />
   );
