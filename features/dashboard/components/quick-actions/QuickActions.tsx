@@ -3,7 +3,7 @@ import { Plus, FolderPlus, Users2 } from "lucide-react";
 
 const actions = [
   {
-    title: "New Project",
+    title: "New Workspace",
     description: "Create a workspace",
     href: "/dashboard/workspaces/new",
     icon: FolderPlus,
