@@ -81,8 +81,8 @@ async function DashboardWrapper() {
           value={reportsToday.length}
           description="Submitted today"
           icon={ClipboardList}
-          iconBgClass="bg-orange-700/30"
-          iconClass="text-orange-600"
+          iconBgClass="bg-orange-500/10 ring-orange-500/20"
+          iconClass="text-orange-400"
         />
 
         <SummaryCard
@@ -90,8 +90,8 @@ async function DashboardWrapper() {
           value={totalMembers.length}
           description="Across your workspaces"
           icon={Users2}
-          iconBgClass="bg-green-700/30"
-          iconClass="text-green-600"
+          iconBgClass="bg-green-500/10 ring-green-500/20"
+          iconClass="text-green-400"
         />
         <AiSummaryCard workspaceIds={workspaceIds} />
       </section>
