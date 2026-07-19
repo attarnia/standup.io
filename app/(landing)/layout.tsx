@@ -13,7 +13,8 @@ async function LandingLayout({
   const fullName = user?.user_metadata?.full_name
     ?? user?.user_metadata?.name
     ?? null;
-  const firstName = fullName?.split(" ")[0] ?? null;
+  const firstName = fullName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? null;
+
 
   return (
     <>

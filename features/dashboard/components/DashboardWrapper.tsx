@@ -13,7 +13,10 @@ async function DashboardWrapper() {
     data: { user },
   } = await supabase.auth.getUser();
   const fullName =
-    user?.user_metadata?.full_name ?? user?.user_metadata?.name ?? null;
+    user?.user_metadata?.full_name ??
+    user?.user_metadata?.name ??
+    user?.email?.split("@")[0] ??
+    null;
   if (!user) {
     redirect("/auth");
   }
@@ -61,7 +64,7 @@ async function DashboardWrapper() {
 
   const owned = memberships.filter((m) => m.role === "OWNER").length;
   const member = memberships.filter((m) => m.role === "MEMBER").length;
-console.log(reportsToday);
+  console.log(reportsToday);
   return (
     <div>
       <Hero name={fullName} />
