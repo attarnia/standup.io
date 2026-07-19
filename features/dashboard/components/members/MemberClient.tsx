@@ -43,30 +43,13 @@ export default function MembersClient({ memberships, workspace }: Props) {
               </option>
             ))}
           </select>
-
-          <button className="flex items-center gap-2 text-zinc-400">
-            <Search size={18} />
-            Search
-          </button>
-
-          <div className="flex rounded-xl border border-white/10 overflow-hidden">
-            <button className="p-2 bg-white/5">
-              <LayoutGrid size={18} />
-            </button>
-
-            <button className="p-2 hover:bg-white/5">
-              <List size={18} />
-            </button>
-          </div>
         </div>
       </div>
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold">{workspace.name}</h2>
 
-        <p className="text-sm text-zinc-500">
-          members
-        </p>
+        <p className="text-sm text-zinc-500">members</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -99,14 +82,6 @@ export default function MembersClient({ memberships, workspace }: Props) {
                 <div className="mt-5">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">{name}</h3>
-
-                    <span
-                      className={`h-2.5 w-2.5 rounded-full ${
-                        member.user.email
-                          ? "bg-emerald-500"
-                          : "bg-zinc-500"
-                      }`}
-                    />
                   </div>
 
                   <p className="mt-1 text-sm capitalize text-zinc-500">

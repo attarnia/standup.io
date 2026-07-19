@@ -2,64 +2,56 @@ import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 
 interface ReportCardProps {
-    name: string;
-    avatar?: string | null;
-    submittedAt: string;
+  name: string;
+  avatar?: string | null;
+  submittedAt: string;
 
-    badge: {
-        label: string;
-        variant: "default" | "success" | "warning" | "primary";
-    };
+  badge: {
+    label: string;
+    variant: "default" | "success" | "warning" | "primary" | "failed";
+  };
 
-    content: string;
+  content: string;
 }
 
 export default function ReportCard({
-    name,
-    avatar,
-    submittedAt,
-    badge,
-    content,
+  name,
+  avatar,
+  submittedAt,
+  badge,
+  content,
 }: ReportCardProps) {
+  return (
+    <article className="p-5 bg-surface border-b border-dashed border-muted/30 first:border-t first:border-dashed">
+      <header className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {avatar ? (
+            <Image
+              src={avatar}
+              alt={`${name} avatar`}
+              width={44}
+              height={44}
+              className="rounded-full object-cover"
+            />
+          ) : (
+            <div className="flex h-11 w-11 items-center justify-center rounded-full font-semibold bg-muted/60 text-zinc-400">
+              {name.charAt(0).toUpperCase()}
+            </div>
+          )}
 
+          <div>
+            <h3 className="font-semibold">{name}</h3>
 
-    return (
-        <article className="p-5 bg-surface border-b border-dashed border-muted/30 first:border-t first:border-dashed">
-            <header className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    {avatar ? (
-                        <Image
-                            src={avatar}
-                            alt={`${name} avatar`}
-                            width={44}
-                            height={44}
-                            className="rounded-full object-cover"
-                        />
-                    ) : (
-                        <div className="flex h-11 w-11 items-center justify-center rounded-full font-semibold bg-muted/60 text-zinc-400">
-                            {name.charAt(0).toUpperCase()}
-                        </div>
-                    )}
+            <time className="text-sm text-muted">{submittedAt}</time>
+          </div>
+        </div>
 
-                    <div>
-                        <h3 className="font-semibold">
-                            {name}
-                        </h3>
+        <Badge variant={badge.variant}>{badge.label}</Badge>
+      </header>
 
-                        <time className="text-sm text-muted">
-                            {submittedAt}
-                        </time>
-                    </div>
-                </div>
-
-                <Badge variant={badge.variant}>
-                    {badge.label}
-                </Badge>
-            </header>
-
-            <p className="mt-4 line-clamp-2 text-sm leading-6 text-muted">
-                {content}
-            </p>
-        </article>
-    );
+      <p className="mt-4 line-clamp-2 text-sm leading-6 text-muted">
+        {content}
+      </p>
+    </article>
+  );
 }

@@ -16,12 +16,12 @@ const statusMap: Record<
   Report["status"],
   {
     label: string;
-    variant: "default" | "success" | "warning" | "primary";
+    variant: "default" | "success" | "warning" | "primary" | "failed";
   }
 > = {
   BUG: {
     label: "Bug",
-    variant: "warning",
+    variant: "failed",
   },
   DONE: {
     label: "Done",
