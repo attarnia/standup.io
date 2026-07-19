@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# Standup.io
 
-First, run the development server:
+**Async standups for remote teams — no meetings required.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Submit daily updates, track team activity across workspaces, and get AI-generated summaries automatically.
+
+<!-- Replace with your own badges once CI/deployment is set up -->
+<!-- ![Build](https://img.shields.io/github/actions/workflow/status/your-username/standup.io/ci.yml) -->
+<!-- ![License](https://img.shields.io/github/license/your-username/standup.io) -->
+<!-- ![Vercel](https://img.shields.io/badge/deployed-vercel-black) -->
+
+</div>
+
+---
+
+## 📸 Preview
+
+<!--
+  Add screenshots here. Recommended shots:
+  - Landing page (hero section)
+  - Dashboard / workspace list
+  - Workspace detail (members + invite link)
+  - Daily report submission form
+  - AI summary output
+
+  Example markdown once you have images in a /docs or /public/screenshots folder:
+
+  ![Landing page](./docs/screenshots/landing.png)
+  ![Dashboard](./docs/screenshots/dashboard.png)
+  ![Workspace members](./docs/screenshots/workspace-members.png)
+  ![Daily report form](./docs/screenshots/report-form.png)
+-->
+
+_Screenshots coming soon._
+
+---
+
+## ✨ Features
+
+- **Workspaces** — create or join multiple workspaces via a shareable invite link
+- **Roles** — `OWNER` / `MEMBER` permissions, with ownership transfer support
+- **Daily reports** — submit yesterday / today / blockers updates, one per person per day per workspace
+- **AI summaries** — automatic team-standup summarization with provider fallback (Groq → Pollinations → Gemini)
+- **Authentication** — email/password and Google OAuth via Supabase, with automatic account sync into the app's own database
+- **Access control** — server-side permission checks on every mutation (not just hidden UI), workspace membership verified before any read or write
+
+---
+
+## 🛠️ Tech stack
+
+| Layer        | Technology                                                                      |
+| ------------ | ------------------------------------------------------------------------------- |
+| Framework    | [Next.js](https://nextjs.org/) (App Router, Server Actions)                     |
+| Language     | TypeScript                                                                      |
+| Database     | PostgreSQL (hosted on [Supabase](https://supabase.com/))                        |
+| ORM          | [Prisma](https://www.prisma.io/)                                                |
+| Auth         | Supabase Auth (email/password + Google OAuth)                                   |
+| Styling      | [Tailwind CSS](https://tailwindcss.com/) with a custom dark design token system |
+| AI summaries | Groq, Pollinations, and Gemini APIs (fallback chain)                            |
+| Icons        | Inline SVG                                                                      |
+
+---
+
+## 🚀 Getting started
+
+### Prerequisites
+
+- Node.js 18+
+- A [Supabase](https://supabase.com/) project (free tier is enough to start)
+
+### Setup
+
+1. Clone the repo and install dependencies:
+
+   ```bash
+   git clone https://github.com/your-username/standup.io.git
+   cd standup.io
+   npm install
+   ```
+
+2. Copy the example environment file and fill in your credentials:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Run database migrations:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+4. (Optional but recommended) Enable Supabase auth identity linking so the same email signing in via email/password and Google doesn't create duplicate accounts. Dashboard → Authentication → Sign In / Providers.
+
+5. Start the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🔑 Environment variables
+
+| Variable                        | Description                                                                |
+| ------------------------------- | -------------------------------------------------------------------------- |
+| `DATABASE_URL`                  | Pooled Postgres connection string (Supabase transaction pooler, port 6543) |
+| `DIRECT_URL`                    | Direct Postgres connection string (used for migrations, port 5432)         |
+| `NEXT_PUBLIC_SUPABASE_URL`      | Supabase project URL                                                       |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key                                                   |
+| `SUPABASE_SERVICE_ROLE_KEY`     | Supabase service role key — **server-only, never expose to the client**    |
+| `NEXT_PUBLIC_APP_URL`           | Base URL of the app (used to build invite links)                           |
+| `GROQ_API_KEY`                  | Primary AI summary provider                                                |
+| `POLLINATIONS_API_KEY`          | Fallback AI summary provider                                               |
+| `GEMINI_API_KEY`                | Second fallback AI summary provider                                        |
+
+> ⚠️ Never commit `.env` to version control. Rotate any credentials that have been exposed in commit history, chat logs, or screenshots.
+
+---
+
+## 📁 Project structure
+
+```
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /auth
+├ ƒ /auth/callback
+├ ƒ /dashboard
+├ ƒ /dashboard/workspaces
+├ ƒ /dashboard/workspaces/[workspaceId]/member
+├ ƒ /dashboard/workspaces/[workspaceId]/reports
+├ ○ /dashboard/workspaces/new
+├ ƒ /email-password
+├ ƒ /google-login
+└ ƒ /join/[code]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🗺️ Roadmap
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [ ] AI summary generation job (scheduled/cron-triggered)
+- [ ] Email notifications for missed daily reports
+- [ ] Workspace-level settings (private/public, invite permissions)
+- [ ] Report history and analytics view
+- [ ] Mobile-responsive polish pass
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This is currently a solo portfolio project, but issues and PRs are welcome. Please open an issue before submitting a large PR to discuss the change first.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the [MIT License](./LICENSE).
