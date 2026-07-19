@@ -8,6 +8,7 @@ import {
   removeMember,
   transferOwnership,
   regenerateInviteCode,
+  leaveWorkspace,
 } from "@/action/workspace";
 
 type Member = {
@@ -33,10 +34,28 @@ export default function WorkspaceMembers({
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState("");
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [leave, setLeave] = useState<boolean>(false);
   const router = useRouter();
 
   const isOwner = currentUserRole === "OWNER";
   const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/join/${workspace.inviteCode}`;
+
+  async function handelLeave() {
+    setError("");
+    const confirmed = window.confirm(
+      `Leave ${workspace.name}? You'll need a new invite to rejoin.`,
+    );
+    if (!confirmed) return;
+    setLeave(true);
+    try {
+      await leaveWorkspace(workspace.id);
+      router.push("/dashboard/workspaces");
+      router.refresh();
+    } catch (e: any) {
+      setError(e.message);
+      setLeave(false);
+    }
+  }
 
   async function handleCopyLink() {
     await navigator.clipboard.writeText(inviteLink);
@@ -163,6 +182,26 @@ export default function WorkspaceMembers({
       </div>
 
       {error && <p className="text-sm text-red-500">{error}</p>}
+      <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-5">
+        <p className="text-sm font-semibold text-text">Leave workspace</p>
+        <p className="mt-1 text-sm text-muted">
+          {isOwner &&
+          workspace.members.filter((m) => m.role === "OWNER").length === 1
+            ? "You're the only owner. Transfer ownership to someone else before you can leave."
+            : `You'll lose access to ${workspace.name} and need a new invite to rejoin.`}
+        </p>
+        <button
+          onClick={handelLeave}
+          disabled={
+            leave ||
+            (isOwner &&
+              workspace.members.filter((m) => m.role === "OWNER").length === 1)
+          }
+          className="btn-error mt-3 rounded-lg px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          {leave ? "Leaving..." : "Leave workspace"}
+        </button>
+      </div>
     </div>
   );
 }
