@@ -9,17 +9,23 @@ type cardType = {
 function Card({ icon, title, caption, stepNumber }: cardType) {
   return (
     <div className="card">
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 text-neutral">
+      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-900 text-neutral sm:mb-5 sm:h-12 sm:w-12">
         {icon}
       </div>
+
       {stepNumber && (
-        <span className="mb-3 inline-block text-sm font-medium text-muted">
+        <span className="mb-2 inline-block text-xs font-medium text-muted sm:mb-3 sm:text-sm">
           Step {stepNumber}
         </span>
       )}
-      <h4 className="mb-2 text-xl font-semibold text-neutral ">{title}</h4>
 
-      <p className="text-sm leading-6 text-nowrap  text-muted">{caption}</p>
+      <h4 className="mb-2 text-lg font-semibold text-neutral sm:text-xl">
+        {title}
+      </h4>
+
+      <p className="text-sm leading-6 text-muted wrap-break-word">
+        {caption}
+      </p>
     </div>
   );
 }

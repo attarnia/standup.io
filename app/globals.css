@@ -14,6 +14,7 @@
   --primary-foreground: #181818;
 }
 
+
 @theme inline {
   --color-base: var(--base);
   --color-surface: var(--surface);
@@ -36,6 +37,10 @@
     --background: #000000;
     --text-color: #ffffff;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -200,9 +205,9 @@ body {
 
 .shadow-box {
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.45),
+    0 20px 20px rgba(0, 0, 0, 0.45),
     0 0 40px rgba(255, 255, 255, 0.08),
-    0 0 80px rgba(142, 149, 161, 0.12);
+    0 0 40px rgba(142, 149, 161, 0.12);
 }
 
 @keyframes floating {

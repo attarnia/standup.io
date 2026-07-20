@@ -30,7 +30,7 @@ const features = [
 
 function Features() {
   return (
-    <section className=" py-24">
+    <section className="py-5" id="features">
       <div className="text-center">
         <span className="mb-4 inline-block rounded-full border border-zinc-800 px-4 py-1 text-sm text-(--muted)">
           Features
