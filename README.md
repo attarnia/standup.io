@@ -17,24 +17,7 @@ Submit daily updates, track team activity across workspaces, and get AI-generate
 
 ## 📸 Preview
 
-<!--
-  Add screenshots here. Recommended shots:
-  - Landing page (hero section)
-  - Dashboard / workspace list
-  - Workspace detail (members + invite link)
-  - Daily report submission form
-  - AI summary output
-
-  Example markdown once you have images in a /docs or /public/screenshots folder:
-
-  ![Landing page](./docs/screenshots/landing.png)
-  ![Dashboard](./docs/screenshots/dashboard.png)
-  ![Workspace members](./docs/screenshots/workspace-members.png)
-  ![Daily report form](./docs/screenshots/report-form.png)
--->
-
-_Screenshots coming soon._
-
+![StandUp Dashboard](public/image/StandUp.png)
 ---
 
 ## ✨ Features
