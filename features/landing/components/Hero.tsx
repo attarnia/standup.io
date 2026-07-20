@@ -1,31 +1,44 @@
 import Image from "next/image";
 import HeroButton from "@/components/ui/HeroButton";
 
-const Hero = () => {
-  return (
-    <section className="overflow-hidden px-4 pt-32 pb-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        {/* Hero Content */}
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="h1">Manage team tasks and stand-ups effortlessly</h1>
+type HeroProps = {
+  firstName?: string | null;
+};
 
-          <p className="hero-desc mt-6">
+const Hero = ({ firstName }: HeroProps) => {
+  return (
+    <section className="overflow-hidden px-4 pt-24 pb-16 sm:px-6 sm:pt-28 sm:pb-20 lg:px-8 lg:pt-32 lg:pb-24"  id="home">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="h1">
+            Manage team tasks and stand-ups effortlessly
+          </h1>
+
+          <p className="hero-desc mt-5 sm:mt-6">
             Project Standup helps you and your team make project development
             more transparent with asynchronous stand-ups, AI summaries, and
             real-time insights.
           </p>
 
-          <div className="hero-actions mt-10 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-10 flex items-center justify-center gap-3">
             <HeroButton
-              href="/signup"
-              ariaLabel="Sign up for Standup and start managing team tasks"
-              title="Get Started with Standup"
+              href={firstName ? "/dashboard" : "/auth"}
+              ariaLabel={
+                firstName
+                  ? "Go to your dashboard"
+                  : "Sign up for Standup and start managing team tasks"
+              }
+              title={
+                firstName
+                  ? "Go to Dashboard"
+                  : "Get Started with Standup"
+              }
             >
-              Get Started
+              {firstName ? "Go to Dashboard" : "Get Started"}
             </HeroButton>
 
             <HeroButton
-              href="/learn-more"
+              href="/#features"
               ariaLabel="Learn more about how Standup works"
               title="Learn more about Standup"
             >
@@ -34,28 +47,23 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="relative mt-20">
-          {/* Background Glow */}
+        <div className="relative mt-12 sm:mt-16 lg:mt-20">
           <div
             aria-hidden="true"
-            className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/20 blur-[120px]"
+            className="absolute left-1/2 top-8 h-48 w-48 -translate-x-1/2 rounded-full bg-blue-500/20 blur-[100px] sm:top-10 sm:h-72 sm:w-72 sm:blur-[120px]"
           />
 
-          {/* Perspective */}
           <div className="relative mx-auto max-w-6xl perspective-[1800px]">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#111111]   shadow-box ring-1 ring-white/5 transition-transform duration-500 md:[transform:rotateX(8deg)] md:hover:scale-[1.02]">
-              {/* Browser Header */}
-              <div className="flex items-center gap-2 border-b border-white/10 bg-[#18181b] px-5 py-4">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#111111] shadow-box ring-1 ring-white/5 transition-transform duration-500 sm:rounded-3xl md:[transform:rotateX(8deg)] md:hover:scale-[1.02]">
+              <div className="flex items-center gap-2 border-b border-white/10 bg-[#18181b] px-4 py-3 sm:px-5 sm:py-4">
                 <span className="h-3 w-3 rounded-full bg-red-500" />
                 <span className="h-3 w-3 rounded-full bg-yellow-500" />
                 <span className="h-3 w-3 rounded-full bg-green-500" />
               </div>
 
-              {/* Dashboard Image */}
               <div className="relative aspect-video w-full">
                 <Image
-                  src="/image/hero-img.png" // <-- Replace with your image path
+                  src="/image/hero-img.png"
                   alt="Standup dashboard preview showing team reports and AI summaries"
                   fill
                   priority
@@ -67,10 +75,9 @@ const Hero = () => {
                   className="object-cover"
                 />
 
-                {/* Bottom Gradient */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+                  className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/20 to-transparent sm:h-32"
                 />
               </div>
             </div>

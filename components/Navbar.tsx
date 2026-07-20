@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/features", label: "Features" },
-  { href: "/about", label: "About" },
+  { href: "/#home", label: "Home" },
+  { href: "/#features", label: "Features" },
+  { href: "/#howItWorks", label: "How It Works" },
 ];
 
 
@@ -22,7 +22,7 @@ export default function Navbar({ firstName }: Props) {
   const cta = firstName ? (
     <Link
       href="/dashboard"
-      className="hidden md:flex items-center gap-3 rounded-full border border-border px-2 py-2 hover:bg-primary/5 transition-all backdrop-blur-sm"
+      className="hidden md:flex items-center gap-3 rounded-full border border-border px-2 py-2 hover:bg-primary/5 transition-all backdrop-blur-lg"
     >
       <span className="text-sm font-medium  px-2 py-1 text-text">
        Go to Dashboard
@@ -112,7 +112,7 @@ export default function Navbar({ firstName }: Props) {
                     <Link
                       href="/dashboard"
                       onClick={() => setOpen(false)}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/10 px-4 py-3 text-sm font-medium text-text backdrop-blur-sm transition-all duration-200 hover:bg-surface hover:border-primary/40 active:scale-[0.98]"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/10 px-4 py-3 text-sm font-medium text-text backdrop-blur-lg transition-all duration-200 hover:bg-surface hover:border-primary/40 active:scale-[0.98]"
                     >
                       <span>Go to Dashboard</span>
                     </Link>
